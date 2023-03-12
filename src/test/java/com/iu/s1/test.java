@@ -1,6 +1,7 @@
 package com.iu.s1;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,14 +24,15 @@ public class test {
 	public void tests() throws Exception{
 		MemberDTO memberDTO = new MemberDTO();
 		
-		memberDTO.setId("test");
-		memberDTO.setPw("test");
-		memberDTO.setName("name");
-		memberDTO.setAddress("addre");
+		memberDTO.setId("id");
+		memberDTO.setPw("id");
+		memberDTO.setName("이름");
+		memberDTO.setAddress("주소");
 		memberDTO.setPhone("11");
-		memberDTO.setEmail("em");
-		int result = memberDAO.setMemberAdd(memberDTO);
-		assertEquals(1, result);
+		memberDTO.setEmail("이메일");
+		
+		int result = memberDAO.setMemberUpdate(memberDTO);
+		assertEquals(1,result);
 	}
 
 }
