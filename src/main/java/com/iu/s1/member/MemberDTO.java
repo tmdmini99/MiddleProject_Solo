@@ -2,24 +2,29 @@ package com.iu.s1.member;
 
 public class MemberDTO {
 	private String id;
-	private	Long roleNum;
+	
 	private String pw;
 	private String name;
 	private	String address;
 	private String phone;
 	private String email;
+	private RoleDTO roleDTO;
+	
+	
+	
+	public RoleDTO getRoleDTO() {
+		return roleDTO;
+	}
+	public void setRoleDTO(RoleDTO roleDTO) {
+		this.roleDTO = roleDTO;
+	}
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	public Long getRoleNum() {
-		return roleNum;
-	}
-	public void setRoleNum(Long roleNum) {
-		this.roleNum = roleNum;
-	}
+	
 	public String getPw() {
 		return pw;
 	}

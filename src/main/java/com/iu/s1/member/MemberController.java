@@ -1,10 +1,15 @@
 package com.iu.s1.member;
 
+import java.util.List;
+
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +21,36 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@GetMapping("memberIdFind")
+	public ModelAndView getMemberIdFind()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("member/memberIdFind");
+		return mv;
+	}
+	
+	@PostMapping("memberIdFind")
+	public ModelAndView getMemberIdFind(String email)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		System.out.println(email);
+		List<String> names=memberService.getMemberIdFind(email);
+		
+		mv.addObject("name", names);
+		mv.setViewName("common/memberId");
+		return mv;
+	}
+	
+	@PostMapping("memberCheck")
+	public ModelAndView getMemberCheck(MemberDTO memberDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println(memberDTO.getId());
+		boolean check = memberService.getMemberCheck(memberDTO);
+		System.out.println(check);
+		mv.addObject("result", check);
+		mv.setViewName("common/memberCheck");
+		return mv;
+	}
 	
 	@GetMapping("memberJoin")
 	public ModelAndView setMemberAdd() throws Exception{
@@ -39,7 +74,7 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO=new MemberDTO();
 		memberDTO=(MemberDTO)session.getAttribute("member");
-		System.out.println(memberDTO.getId());
+		
 		memberDTO=memberService.getMemberDetail(memberDTO);
 		
 		mv.addObject("dto", memberDTO);
@@ -53,12 +88,29 @@ public class MemberController {
 		return mv;
 	}
 	@PostMapping("memberLogin")
-	public ModelAndView getMemberLogin(MemberDTO memberDTO,HttpSession session) throws Exception{
+	public ModelAndView getMemberLogin(MemberDTO memberDTO,HttpSession session,String remember,HttpServletResponse response) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		memberDTO=memberService.getMemberLogin(memberDTO);
-		System.out.println(memberDTO.getId());
+		if(remember != null && memberDTO !=null&& remember.equals("remember")) {
+		Cookie cookie = new Cookie("remember",memberDTO.getId() );
+		cookie.setMaxAge(60*60*24*7);
+		response.addCookie(cookie);
+		}else {
+			Cookie cookie = new Cookie("remember","");
+			cookie.setMaxAge(0);
+			response.addCookie(cookie);
+		}
 		session.setAttribute("member", memberDTO);
-		mv.setViewName("redirect:../");
+		String message="로그인 실패";
+		if(memberDTO !=null) {
+			message="로그인 성공";
+			mv.addObject("url", "/");
+		}else {
+			mv.addObject("url", "./memberLogin");
+		}
+		mv.addObject("message", message);
+		
+		mv.setViewName("common/result");
 		return mv;
 	}
 	@GetMapping("memberUpdate")
@@ -75,10 +127,18 @@ public class MemberController {
 	@PostMapping("memberUpdate")
 	public ModelAndView setMemberUpdate(MemberDTO memberDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		memberDTO=memberService.getMemberDetail(memberDTO);
-		
-		mv.addObject("dto", memberDTO);
+		System.out.println(memberDTO.getId());
+		int result=memberService.setMemberUpdate(memberDTO);
+	
 		mv.setViewName("redirect:./memberDetail");
+		return mv;
+	}
+	@GetMapping("memberLogout")
+	public ModelAndView setMemberLogout(HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		session.invalidate();
+		mv.setViewName("redirect:../");
 		return mv;
 	}
 	

@@ -1,5 +1,7 @@
 package com.iu.s1.member;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,10 +21,9 @@ public class MemberService {
 	
 	public MemberDTO getMemberLogin(MemberDTO memberDTO) throws Exception{
 		MemberDTO loginDTO=memberDAO.getMemberLogin(memberDTO);
-		System.out.println(loginDTO.getPw()==memberDTO.getPw());
-		System.out.println(loginDTO.getPw()==memberDTO.getPw());
+		
 		if(loginDTO!=null &&loginDTO.getPw().equals(memberDTO.getPw())) {
-			System.out.println("들어와?");
+			memberDTO.setRoleDTO(loginDTO.getRoleDTO());
 			memberDTO.setPw(null);
 			return memberDTO;
 		}
@@ -31,4 +32,18 @@ public class MemberService {
 	public int setMemberUpdate(MemberDTO memberDTO) throws Exception{
 		return memberDAO.setMemberUpdate(memberDTO);
 	}
+	public boolean getMemberCheck(MemberDTO memberDTO)throws Exception{
+		boolean check = true;
+		memberDTO=memberDAO.getMemberLogin(memberDTO);
+		if(memberDTO != null) {
+			check=false;
+		}
+		
+		return check;
+		
+	}
+	public List<String> getMemberIdFind(String email)throws Exception{
+		return memberDAO.getMemberIdFind(email);
+	}
+	
 }

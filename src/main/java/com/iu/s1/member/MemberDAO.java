@@ -1,5 +1,7 @@
 package com.iu.s1.member;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,6 +23,9 @@ public class MemberDAO {
 	}
 	public int setMemberUpdate(MemberDTO memberDTO) throws Exception{
 		return sqlSession.update(NAMESPACE+"setMemberUpdate", memberDTO);
+	}
+	public List<String> getMemberIdFind(String email)throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getMemberIdFind", email);
 	}
 	
 }
