@@ -30,6 +30,8 @@
     </div>
     <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
     <a class="w-100 btn btn-lg btn-info" href="./memberIdFind">ID찾기</a>
+    <a class="w-100 btn btn-lg btn-info" href="./memberPwFind">PW찾기</a>
+    
     <p class="mt-5 mb-3 text-muted">© 2023-03-13~2023-04-14</p>
   </form>
 </body>

@@ -8,12 +8,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <c:import url="../template/common_css.jsp"></c:import>
+	<c:import url="../template/common_css.jsp"></c:import>
 	
-	<div class="form-floating" id="findId">
+	<div class="form-floating" id="findPw">
+      <input type="text" class="form-control" id="IdFind" placeholder="Id입력">
+      <label for="floatingInput">Id입력</label>
       <input type="text" class="form-control" id="emailFind" placeholder="Email입력">
       <label for="floatingInput">email입력</label>
-      <button type="button" id="btn">찾기</button>
+      <button type="button" id="btn1">찾기</button>
     </div>
 <script src="/resources/js/memberIdFind.js"></script>
 <c:import url="../template/common_js.jsp"></c:import>

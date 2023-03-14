@@ -56,7 +56,7 @@
     </div>
   </div>
 
-<a href="./memberUpdate" class="btn btn-danger offset-md-6">수정</a>
+<a href="./memberPwCheck" class="btn btn-danger offset-md-6">수정</a>
 
 </div>
 

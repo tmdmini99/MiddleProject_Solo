@@ -41,6 +41,26 @@ public class MemberController {
 		return mv;
 	}
 	
+	@GetMapping("memberPwFind")
+	public ModelAndView getMemberPwFind()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("member/memberPwFind");
+		return mv;
+	}
+	
+	@PostMapping("memberPwFind")
+	public ModelAndView getMemberPwFind(MemberDTO memberDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		String pw=memberService.setMemberPwChange(memberDTO);
+		
+		
+		
+		mv.addObject("name", pw);
+		mv.setViewName("common/memberId");
+		return mv;
+	}
+	
+	
 	@PostMapping("memberCheck")
 	public ModelAndView getMemberCheck(MemberDTO memberDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -75,7 +95,7 @@ public class MemberController {
 		MemberDTO memberDTO=new MemberDTO();
 		memberDTO=(MemberDTO)session.getAttribute("member");
 		
-		memberDTO=memberService.getMemberDetail(memberDTO);
+		//memberDTO=memberService.getMemberDetail(memberDTO);
 		
 		mv.addObject("dto", memberDTO);
 		mv.setViewName("./member/memberDetail");
@@ -141,5 +161,38 @@ public class MemberController {
 		mv.setViewName("redirect:../");
 		return mv;
 	}
+	@GetMapping("memberAgree")
+	public ModelAndView setMemberAgree() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("./member/memberAgree");
+		return mv;
+	}
+	@GetMapping("memberPwCheck")
+	public ModelAndView getMemberPwCheck()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("member/memberPwCheck");
+		return mv;
+	}
 	
+	@PostMapping("memberPwCheck")
+	public ModelAndView getMemberPwCheck(MemberDTO memberDTO,HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		
+		MemberDTO pwCheck =(MemberDTO)session.getAttribute("member");
+				
+		pwCheck=memberService.getMemberDetail(pwCheck);
+		boolean check = false;
+		mv.addObject("message", "확인");
+		
+		if(pwCheck.getPw().equals(memberDTO.getPw())) {
+			check = true;
+			mv.addObject("url", "./memberUpdate");
+		}else {
+			mv.addObject("url", "./memberPwcheck");
+		}
+		mv.setViewName("common/result");
+		return mv;
+	}
 }

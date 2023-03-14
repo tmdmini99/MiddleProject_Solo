@@ -15,7 +15,7 @@
 	<c:choose>
 		<c:when test="${empty member}">
 			<a href="./member/memberLogin">로그인</a>
-			<a href="./member/memberJoin">회원가입</a>
+			<a href="./member/memberAgree">회원가입</a>
 		</c:when>
 		<c:otherwise>
 			<a href="./member/memberLogout">로그아웃</a>

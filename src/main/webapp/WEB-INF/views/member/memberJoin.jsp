@@ -28,6 +28,7 @@
                 <div class="form-group" id="divId">
                		<label for="memberID" class="form-label mt-4">아이디</label>
                     <input type="text" class="form-control" id="memberID" name="id">
+                    <button type="button" id="dup">중복 검사</button>
 					<div class="valid-feedback" id="com"></div>
                 </div>
 				<div class="form-group has-success">
@@ -49,6 +50,10 @@
 					<label for="memberAddress" class="form-label mt-4">주소</label>
 				 <input type="text" class="form-control" id="memberAddress" aria-describedby="emailHelp" name="address">
 			 	</div> 
+				 <!-- <div class="form-group">
+					<label for="memberAddress" class="form-label mt-4">상세 주소</label>
+				 <input type="text" class="form-control" id="address_detail" aria-describedby="emailHelp" name="address1">
+			 	</div>  -->
 				 <div class="form-group">
 					<label for="memberAddress" class="form-label mt-4">휴대폰 번호</label>
 				 <input type="text" class="form-control" id="memberPhone" aria-describedby="emailHelp" name="phone">
@@ -56,7 +61,8 @@
                 <div class="form-group">
                		<label for="memberEmail" class="form-label mt-4">본인 확인 이메일</label>
                     <input type="email" class="form-control" id="memberEmail" aria-describedby="emailHelp" placeholder="선택입력" name="email">
-                </div>
+                </div>	
+				
 				<div class="d-grid gap-2">
                     <button class="btn btn-primary btn-lg" type="button" id="btn1">가입하기</button>
                 </div>
@@ -64,6 +70,20 @@
             </form>
         </div>
     </section>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
+		window.onload = function(){
+			document.getElementById("memberAddress").addEventListener("click", function(){ //주소입력칸을 클릭하면
+				//카카오 지도 발생
+				new daum.Postcode({
+					oncomplete: function(data) { //선택시 입력값 세팅
+						document.getElementById("memberAddress").value = data.address; // 주소 넣기
+						//document.querySelector("input[name=address_detail]").focus(); //상세입력 포커싱
+					}
+				}).open();
+			});
+		}
+		</script>
 	<script src="/resources/js/memberJoin.js"></script>
 	<c:import url="../template/common_js.jsp"></c:import>
 </body>

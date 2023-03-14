@@ -27,5 +27,8 @@ public class MemberDAO {
 	public List<String> getMemberIdFind(String email)throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getMemberIdFind", email);
 	}
+	public int setMemberPwChange(MemberDTO memberDTO)throws Exception{
+		return sqlSession.update(NAMESPACE+"setMemberPwChange", memberDTO);
+	}
 	
 }

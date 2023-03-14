@@ -2,17 +2,23 @@ const memberId = document.getElementById("memberID");
 const divId =document.getElementById("divId");
 const memberPw = document.getElementById("memberPw");
 const memberPw1 = document.getElementById("memberPw1");
+const dup = document.getElementById("dup");
 
 let checks=[false,false,false,false,false,false,false];
 
 memberId.addEventListener("blur",function(){
-    
     if(memberId.value==""){
         memberId.classList.add("is-invalid");
         $("#com").attr("class","invalid-feedback");
         $("#com").text("ID는 필수 입력사항입니다");
+        checks[0]=false;
     }
-    else{
+})
+
+dup.addEventListener("click",function(){
+    
+    
+    
     fetch("./memberCheck",{
         method:"POST",
         headers:{"Content-type": "application/x-www-form-urlencoded"},
@@ -35,7 +41,7 @@ memberId.addEventListener("blur",function(){
         }
     
     })
-    }
+    
 })
 memberPw.addEventListener("blur",function(){
     if(memberPw.value.length<4 || memberPw.value.length>12){
