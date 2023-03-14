@@ -13,10 +13,10 @@
 	}
 
 </style>
+<c:import url="../template/common_css.jsp"></c:import>
 </head>
 <body>
-<c:import url="../template/common_css.jsp"></c:import>
-	
+	<c:import url="../template/header.jsp"></c:import>
 	  <section class="bg-light">
         <div class="container py-4">
             <div class="row align-items-center justify-content-between">

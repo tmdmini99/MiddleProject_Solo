@@ -6,9 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>회원정보</title>
+<c:import url="../template/common_css.jsp"></c:import>
 </head>
 <body>
-<c:import url="../template/common_css.jsp"></c:import>
+<c:import url="../template/header.jsp"></c:import>
 
 
 <div class="container-fluid md-auto">

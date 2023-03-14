@@ -6,9 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
+<c:import url="../template/common_css.jsp"></c:import>
 </head>
 <body>
-<c:import url="../template/common_css.jsp"></c:import>
+<c:import url="../template/header.jsp"></c:import>
 
 	<form action="./memberLogin" method="post">
     <img class="mb-4" src="/resources/imgs/logo.png" alt="" width="72" height="57">
@@ -34,5 +35,6 @@
     
     <p class="mt-5 mb-3 text-muted">© 2023-03-13~2023-04-14</p>
   </form>
+  <c:import url="../template/common_js.jsp"></c:import>
 </body>
 </html>
