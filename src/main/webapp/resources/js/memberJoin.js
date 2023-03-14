@@ -14,6 +14,13 @@ memberId.addEventListener("blur",function(){
         checks[0]=false;
     }
 })
+memberId.addEventListener("change",function(){
+    memberId.classList.add("is-invalid");
+    memberId.classList.remove("is-valid");
+    $("#com").attr("class","invalid-feedback");
+    $("#com").text("중복검사를 해주세요");
+    checks[0]=false;
+});
 
 dup.addEventListener("click",function(){
     

@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value="/product/*")
 public class ProductController {
 	
-	@GetMapping("lg")
+	@GetMapping("productList")
 	public ModelAndView lg() throws Exception{
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("./product/productList");

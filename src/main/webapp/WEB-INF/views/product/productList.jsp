@@ -6,18 +6,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<c:import url="../template/common_css.jsp"></c:import>
 </head>
 <body>
-<c:import url="../template/common_css.jsp"></c:import>
+
+<c:import url="../template/header.jsp"></c:import>
 <div class="container pt-5 pb-5">
         <div class="row">
             <div class="col-md-4 col-sm-12">
+              
                 <div class="card">
                     <img src="https://www.louisvuitton.com/images/louis-vuitton--U_Holidays_2020_Push5_V2_DI1.jpg?wid=656" class="card-img-top" alt="...">
                     <div class="card-body text-center">
-                        <h2 class="card-text">LATEST SELECTION</h2>
+                        <h2 class="card-text"> <a href="/">LATEST SELECTION
+                     </a>
+                     </h2>
                     </div>
                 </div>
+               
             </div>
             <div class="col-md-4 col-sm-12">
                 <div class="card">
