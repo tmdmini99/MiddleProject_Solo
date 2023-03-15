@@ -6,9 +6,17 @@ public class ProductDTO {
 	private Long discount;
 	private Long dicountPercent;
 	private Long productSales;
+	private Long categoryNum;
 	
 	
 	
+	
+	public Long getCategoryNum() {
+		return categoryNum;
+	}
+	public void setCategoryNum(Long categoryNum) {
+		this.categoryNum = categoryNum;
+	}
 	public Long getProductNum() {
 		return productNum;
 	}
