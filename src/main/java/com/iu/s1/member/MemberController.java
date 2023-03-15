@@ -33,7 +33,7 @@ public class MemberController {
 	public ModelAndView getMemberIdFind(String email)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
-		System.out.println(email);
+		
 		List<String> names=memberService.getMemberIdFind(email);
 		
 		mv.addObject("name", names);
@@ -64,9 +64,9 @@ public class MemberController {
 	@PostMapping("memberCheck")
 	public ModelAndView getMemberCheck(MemberDTO memberDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		System.out.println(memberDTO.getId());
+		
 		boolean check = memberService.getMemberCheck(memberDTO);
-		System.out.println(check);
+		
 		mv.addObject("result", check);
 		mv.setViewName("common/memberCheck");
 		return mv;
@@ -147,7 +147,7 @@ public class MemberController {
 	@PostMapping("memberUpdate")
 	public ModelAndView setMemberUpdate(MemberDTO memberDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		System.out.println(memberDTO.getId());
+		
 		int result=memberService.setMemberUpdate(memberDTO);
 	
 		mv.setViewName("redirect:./memberDetail");

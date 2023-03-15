@@ -13,8 +13,8 @@
 <c:import url="../template/header.jsp"></c:import>
 <div class="container pt-5 pb-5">
         <div class="row">
+            
             <div class="col-md-4 col-sm-12">
-              
                 <div class="card">
                     <img src="https://www.louisvuitton.com/images/louis-vuitton--U_Holidays_2020_Push5_V2_DI1.jpg?wid=656" class="card-img-top" alt="...">
                     <div class="card-body text-center">
@@ -43,7 +43,7 @@
             </div>
         </div>
     </div>
-
+<script src="/resources/js/productList.js"></script>
 <c:import url="../template/common_js.jsp"></c:import>
 </body>
 </html>

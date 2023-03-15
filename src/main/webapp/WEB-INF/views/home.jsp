@@ -15,28 +15,25 @@
 <body>
    <c:import url="./template/header.jsp"></c:import>
  
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2" class="active" aria-current="true"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item">
-                <img src="/resources/imgs/HERO-Banner_PC_promotion_1226_02.jpg" alt="..." class="first-img">
-            </div>
-            <div class="carousel-item active">
-                <img src="/resources/imgs/main_bn_pc_moodup_1019.gif" class="d-block w-100" alt="...">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+    
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="/resources/imgs/HERO-Banner_PC_promotion_1226_02.jpg" class="d-block w-100" alt="...">
     </div>
+    <div class="carousel-item">
+      <img src="/resources/imgs/main_bn_pc_moodup_1019.gif" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
     <div class="campagine-section text-center mt-5 mb-5">
         <h2>
             JOURNEY HOME FOR THE HOLIDAYS
