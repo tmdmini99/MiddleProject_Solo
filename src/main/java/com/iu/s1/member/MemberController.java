@@ -3,21 +3,31 @@ package com.iu.s1.member;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.iu.s1.mail.MailSendController;
+import com.iu.s1.mail.MailSendService;
+
 @Controller
 @RequestMapping(value="/member/*")
 public class MemberController {
+	
+	
+	@Autowired
+	private MailSendController mailSendController;
+
+	@Autowired
+	private MailSendService mailService;
+	
+	
 	
 	@Autowired
 	private MemberService memberService;
@@ -51,6 +61,8 @@ public class MemberController {
 	@PostMapping("memberPwFind")
 	public ModelAndView getMemberPwFind(MemberDTO memberDTO)throws Exception{
 		ModelAndView mv = new ModelAndView();
+		System.out.println("Con pw :"+memberDTO.getPw());
+		System.out.println("Con em :"+memberDTO.getEmail());
 		String pw=memberService.setMemberPwChange(memberDTO);
 		
 		
@@ -81,8 +93,9 @@ public class MemberController {
 	}
 	
 	@PostMapping("memberJoin")
-	public ModelAndView setMemberAdd(MemberDTO memberDTO) throws Exception{
+	public ModelAndView setMemberAdd(MemberDTO memberDTO,String emaildomain) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		memberDTO.setEmail(memberDTO.getEmail()+emaildomain);
 		int result = memberService.setMemberJoin(memberDTO);
 		
 		mv.setViewName("redirect:../");

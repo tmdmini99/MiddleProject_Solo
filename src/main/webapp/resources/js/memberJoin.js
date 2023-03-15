@@ -6,6 +6,47 @@ const dup = document.getElementById("dup");
 
 let checks=[false,false,false,false,false,false,false];
 
+
+
+
+
+// email 발송 버튼 클릭 시
+$('#mail-Check-Btn').click(function() {
+    const email = $('#memberEmail').val() + $('#emaildomain').val();
+    const checkInput = $('.mail-check-input');
+
+	$.ajax({
+	    type : 'get',
+	    url : '/mailCheck?email=' + email,
+	    success : function (data) {
+	        console.log("data : " +  data);
+	        checkInput.prop('disabled', false);
+	        code = data;
+	        alert('인증번호가 전송되었습니다.');
+	        $('#mail-Check-Btn').addClass('d-none'); // 발송 버튼 숨기기
+	        $('#mail-Confirm-Btn').removeClass('d-none'); // 확인 버튼 보이기
+	    }           
+	}); // end ajax
+}); // end send email
+
+// 인증번호 확인 버튼 클릭 시
+$('#mail-Confirm-Btn').click(function() {
+	const inputCode = $('.mail-check-input').val();
+	const $resultMsg = $('#mail-check-warn');
+
+	if (inputCode === code) {
+	    $resultMsg.html('인증번호가 일치합니다.');
+	    $resultMsg.css('color', 'green');
+	    $('.mail-check-input').prop('disabled', true);
+	    $('#memberEmail, #emaildomain').prop('readonly', true);
+	    $('#mail-Check-Btn, #mail-Confirm-Btn').prop('disabled', true); // 버튼 모두 비활성화
+	} else {
+	    $resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.');
+	    $resultMsg.css('color', 'red');
+	}
+});
+
+
 memberId.addEventListener("blur",function(){
     if(memberId.value==""){
         memberId.classList.add("is-invalid");

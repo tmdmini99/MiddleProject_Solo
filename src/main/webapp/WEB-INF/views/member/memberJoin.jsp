@@ -61,7 +61,20 @@
                 <div class="form-group">
                		<label for="memberEmail" class="form-label mt-4">본인 확인 이메일</label>
                     <input type="email" class="form-control" id="memberEmail" aria-describedby="emailHelp" placeholder="선택입력" name="email">
+                		<select class="form-control" name="emaildomain" id="emaildomain" >
+						        	<option value="@naver.com">@naver.com</option>
+						        	<option value="@daum.net">@daum.net</option>
+						        	<option value="@gmail.com">@gmail.com</option>
+						        	<option value="@hanmail.com">@hanmail.com</option>
+						        	<option value="@yahoo.co.kr">@yahoo.co.kr</option>
+						        </select>
                 </div>	
+                <div class="input-group mt-3">
+					        <input class="form-control mail-check-input" placeholder="인증번호 6자리를 입력해주세요!" disabled="disabled" maxlength="6">
+					        <button type="button" class="btn btn-primary" id="mail-Check-Btn">인증번호 발송</button>
+					        <button type="button" class="btn btn-secondary d-none" id="mail-Confirm-Btn">인증번호 확인</button>
+					    </div>
+		    <span id="mail-check-warn"></span>
 				
 				<div class="d-grid gap-2">
                     <button class="btn btn-primary btn-lg" type="button" id="btn1">가입하기</button>
