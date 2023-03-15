@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -30,6 +31,20 @@ public class ProductController {
 		productDTO=productService.getProductDetail(productDTO);
 		mv.addObject("dto", productDTO);
 		mv.setViewName("./product/productDetail");
+		return mv;
+	}
+	
+	@GetMapping("productAdd")
+	public ModelAndView setProductAdd()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		return mv;
+	}
+	
+	@PostMapping("productAdd")
+	public ModelAndView setProductAdd(ProductDTO productDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
 		return mv;
 	}
 }

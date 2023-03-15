@@ -1,5 +1,7 @@
 package com.iu.s1.product;
 
+import java.util.List;
+
 public class ProductDTO {
 	private Long productNum;
 	private String productName;
@@ -7,10 +9,27 @@ public class ProductDTO {
 	private Long dicountPercent;
 	private Long productSales;
 	private Long categoryNum;
+	private List<ProductOptionDTO> productOptionDTOs;
+	private List<ProductFileDTO> productFileDTOs;
 	
 	
 	
 	
+	
+	
+	public List<ProductFileDTO> getProductFileDTOs() {
+		return productFileDTOs;
+	}
+	public void setProductFileDTOs(List<ProductFileDTO> productFileDTOs) {
+		this.productFileDTOs = productFileDTOs;
+	}
+	
+	public List<ProductOptionDTO> getProductOptionDTOs() {
+		return productOptionDTOs;
+	}
+	public void setProductOptionDTOs(List<ProductOptionDTO> productOptionDTOs) {
+		this.productOptionDTOs = productOptionDTOs;
+	}
 	public Long getCategoryNum() {
 		return categoryNum;
 	}

@@ -7,7 +7,42 @@
   	<select id="getProductList" resultType="ProductDTO">
   		SELECT * FROM PRODUCT
   	</select>
-  	<select id="getProductDetail" resultType="ProductDTO" parameterType="ProductDTO">
-  		SELECT * FROM PRODUCT WHERE PRODUCTNUM = #{productNum}
+  	<select id="getProductDetail" resultMap="productDetails" parameterType="ProductDTO">
+  		SELECT * FROM PRODUCT 
+  									LEFT JOIN
+  									PRODUCTFILES
+  									LEFT JOIN
+  									PRODUCTOPTION
+  		WHERE PRODUCTNUM = #{productNum}
   	</select>
+  	<resultMap type="ProductDTO" id="productDetails">
+  		<id column="PRODUCTNUM" property="productNum"/>
+  		<result column="CATEGORYNUM" property="categoryNum"/>
+  		<result column="ID" property="id"/>
+  		<result column="PRODUCTNAME" property="productName"/>
+  		<result column="DISCOUNT" property="discount"/>
+  		<result column="DISCOUNTPERCENT" property="discountPercent"/>
+  		<result column="PRODUCTSALES" property="productSales"/>
+  		
+  		<collection property="productOptionDTOs" javaType="List" ofType="ProductOptionDTO">
+  			<id column="OPTIONNUM" property="optionName"/>
+  			<result column="OPTIONNAME" property="optionName"/>
+  			<result column="OPTIONVALUE" property="optionValue"/>
+  			<result column="PRODUCTPRICE" property="productPrice"/>
+  			<result column="PRODUCTSTOCK" property="productStock"/>
+  			<result column="REF" property="ref"/>
+  			<result column="DEPTH" property="depth"/>
+  			<result column="STEP" property="step"/>
+  		</collection>
+  		
+  		<collection property="productFileDTOs" javaType="List" ofType="ProductFileDTO">
+  			<id column="FILENUM" property="fileNum"/>
+  			<result column="FILENAME" property="fileName"/>
+  			<result column="ORINAME" property="oriName"/>
+  		</collection>
+  	</resultMap>
+  	<insert id="setProductAdd" parameterType="ProductDTO">
+  	INSERT INTO PRODUCTOPTION VALUES (PRODUCTOPTION_SEQ.NEXTVAL,1,1000,5,'color','blue',PRODUCTOPTION_SEQ.CURRVAL,1,0)
+  	</insert>
+  	
   </mapper>
