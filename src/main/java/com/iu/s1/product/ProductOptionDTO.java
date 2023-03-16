@@ -4,8 +4,41 @@ public class ProductOptionDTO {
 	private Long optionNum;
 	private Long productNum;
 	private String optionName;
+	private String optionValue;
 	private Long productPrice;
 	private Long productStock;
+	private Long ref;
+	private Long depth;
+	private Long step;
+	
+	
+	
+	
+	
+	public Long getRef() {
+		return ref;
+	}
+	public void setRef(Long ref) {
+		this.ref = ref;
+	}
+	public Long getDepth() {
+		return depth;
+	}
+	public void setDepth(Long depth) {
+		this.depth = depth;
+	}
+	public Long getStep() {
+		return step;
+	}
+	public void setStep(Long step) {
+		this.step = step;
+	}
+	public String getOptionValue() {
+		return optionValue;
+	}
+	public void setOptionValue(String optionValue) {
+		this.optionValue = optionValue;
+	}
 	public Long getOptionNum() {
 		return optionNum;
 	}

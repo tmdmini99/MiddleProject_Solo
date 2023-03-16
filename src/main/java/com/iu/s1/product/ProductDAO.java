@@ -15,4 +15,14 @@ public class ProductDAO {
 	public List<ProductDTO> getProductList() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getProductList");
 	}
+	
+	public ProductDTO getProductDetail(ProductDTO productDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getProductDetail", productDTO);
+	}
+	public int setProductOptionAdd(ProductDTO productDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"ProductDTO productDTO", productDTO);
+	}
+	public int setProductAdd(ProductDTO productDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"setProductAdd", productDTO);
+	}
 }

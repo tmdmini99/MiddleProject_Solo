@@ -14,33 +14,17 @@
 <div class="container pt-5 pb-5">
         <div class="row">
             
-            <div class="col-md-4 col-sm-12">
-                <div class="card">
-                    <img src="https://www.louisvuitton.com/images/louis-vuitton--U_Holidays_2020_Push5_V2_DI1.jpg?wid=656" class="card-img-top" alt="...">
-                    <div class="card-body text-center">
-                        <h2 class="card-text"> <a href="/">LATEST SELECTION
-                     </a>
-                     </h2>
-                    </div>
-                </div>
-               
-            </div>
-            <div class="col-md-4 col-sm-12">
-                <div class="card">
-                    <img src="https://www.louisvuitton.com/images/louis-vuitton--U_Holidays_2020_Push6_V2_DI1.jpg?wid=656" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h2 class="card-text text-center">GIFTS FOR HIM</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-12">
-                <div class="card">
-                    <img src="https://www.louisvuitton.com/images/louis-vuitton--U_Holidays_2020_Push7_V2_DI1.jpg?wid=656" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h2 class="card-text text-center">GIFTS FOR HER</h2>
-                    </div>
-                </div>
-            </div>
+            <c:forEach items="${dto}" var="list">
+	            <div class="col-md-4 col-sm-12">
+	                <div class="card" data-num=${list.productNum}>
+	                    <img src="https://www.louisvuitton.com/images/louis-vuitton--U_Holidays_2020_Push5_V2_DI1.jpg?wid=656" class="card-img-top" alt="...">
+	                    
+	                        <h2 class="card-text card-body text-center" > ${list.productName}</h2>
+	                    
+	                </div>
+	               
+	            </div>
+            </c:forEach>
         </div>
     </div>
 <script src="/resources/js/productList.js"></script>

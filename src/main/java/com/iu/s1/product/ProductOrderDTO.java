@@ -2,7 +2,7 @@ package com.iu.s1.product;
 
 import oracle.sql.DATE;
 
-public class ProductOrder {
+public class ProductOrderDTO {
 	private Long orderNum;
 	private Long productNum;
 	private String id;
