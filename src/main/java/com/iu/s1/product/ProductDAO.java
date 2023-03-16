@@ -19,4 +19,10 @@ public class ProductDAO {
 	public ProductDTO getProductDetail(ProductDTO productDTO) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getProductDetail", productDTO);
 	}
+	public int setProductOptionAdd(ProductDTO productDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"ProductDTO productDTO", productDTO);
+	}
+	public int setProductAdd(ProductDTO productDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"setProductAdd", productDTO);
+	}
 }

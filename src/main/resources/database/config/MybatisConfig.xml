@@ -8,6 +8,7 @@
   	<typeAlias type="com.iu.s1.member.MemberDTO" alias="MemberDTO"/>
   	<typeAlias type="com.iu.s1.member.RoleDTO" alias="RoleDTO"/>
  		<typeAlias type="java.lang.String" alias="String"/>
+ 		<typeAlias type="java.lang.Long" alias="Long"/>
  		<typeAlias type="com.iu.s1.product.ProductDTO" alias="ProductDTO"/>
  		<typeAlias type="com.iu.s1.product.ProductOptionDTO" alias="ProductOptionDTO"/>
  		<typeAlias type="com.iu.s1.product.ProductFileDTO" alias="ProductFileDTO"/>

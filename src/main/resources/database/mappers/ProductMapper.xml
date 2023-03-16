@@ -41,8 +41,15 @@
   			<result column="ORINAME" property="oriName"/>
   		</collection>
   	</resultMap>
+  	
+  	<insert id="setProductOptionAdd" parameterType="ProductOptionDTO">
+  	<selectKey order="BEFORE" resultType="Long" keyProperty="optionNum">
+  	SELECT PRODUCTOPTION_SEQ.NEXTVAL FROM DUAL
+  	</selectKey>
+  	INSERT INTO PRODUCTOPTION VALUES (#{optionNum},#{productNum},#{optionName},#{optionValue},#{productPrice},#{productStock},#{optionNum},#{depth},0)
+  	</insert>
   	<insert id="setProductAdd" parameterType="ProductDTO">
-  	INSERT INTO PRODUCTOPTION VALUES (PRODUCTOPTION_SEQ.NEXTVAL,1,1000,5,'color','blue',PRODUCTOPTION_SEQ.CURRVAL,1,0)
+  		INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL,#{productName},#{discount},#{discountPercent},#{productSales},#{categoryNum},#{id})
   	</insert>
   	
   </mapper>

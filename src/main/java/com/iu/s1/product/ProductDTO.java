@@ -8,7 +8,7 @@ public class ProductDTO {
 	private Long discount;
 	private Long dicountPercent;
 	private Long productSales;
-	private Long categoryNum;
+	private List<ProductCategory> productCategories;
 	private List<ProductOptionDTO> productOptionDTOs;
 	private List<ProductFileDTO> productFileDTOs;
 	
@@ -30,11 +30,12 @@ public class ProductDTO {
 	public void setProductOptionDTOs(List<ProductOptionDTO> productOptionDTOs) {
 		this.productOptionDTOs = productOptionDTOs;
 	}
-	public Long getCategoryNum() {
-		return categoryNum;
+	
+	public List<ProductCategory> getProductCategories() {
+		return productCategories;
 	}
-	public void setCategoryNum(Long categoryNum) {
-		this.categoryNum = categoryNum;
+	public void setProductCategories(List<ProductCategory> productCategories) {
+		this.productCategories = productCategories;
 	}
 	public Long getProductNum() {
 		return productNum;
