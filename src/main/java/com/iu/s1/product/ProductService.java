@@ -18,4 +18,20 @@ public class ProductService {
 	public ProductDTO getProductDetail(ProductDTO productDTO) throws Exception{
 		return productDAO.getProductDetail(productDTO);
 	}
+	public int setProductAdd(ProductDTO productDTO,Long [] categoryNums)throws Exception{
+		
+		int result=productDAO.setProductAdd(productDTO);
+		if(result>0) {
+			CategoryDTO productCategoryDTO =new CategoryDTO();
+			productCategoryDTO.setProductNum(productDTO.getProductNum());
+			for(Long categoryNum : categoryNums) {
+				productCategoryDTO.setCategoryNum(categoryNum);
+				result =productDAO.setProductCategoryAdd(productCategoryDTO);
+			}
+		}
+		return result;
+	}
+	public int setProductOptionAdd(ProductDTO productDTO)throws Exception{
+		return productDAO.setProductOptionAdd(productDTO);
+	}
 }

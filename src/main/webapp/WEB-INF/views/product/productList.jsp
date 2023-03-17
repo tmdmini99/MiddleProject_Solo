@@ -27,6 +27,10 @@
             </c:forEach>
         </div>
     </div>
+    <c:if test="${member.roleDTO.roleNum <3}">
+    	보임
+    </c:if>
+    <a href="./productAdd">상품 추가</a>
 <script src="/resources/js/productList.js"></script>
 <c:import url="../template/common_js.jsp"></c:import>
 </body>

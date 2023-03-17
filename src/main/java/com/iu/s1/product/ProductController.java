@@ -37,14 +37,30 @@ public class ProductController {
 	@GetMapping("productAdd")
 	public ModelAndView setProductAdd()throws Exception{
 		ModelAndView mv = new ModelAndView();
-		
+		mv.setViewName("./product/productAdd");
 		return mv;
 	}
 	
 	@PostMapping("productAdd")
-	public ModelAndView setProductAdd(ProductDTO productDTO)throws Exception{
+	public ModelAndView setProductAdd(ProductDTO productDTO,Long [] categoryNum)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
+		int result = productService.setProductAdd(productDTO,categoryNum);
+		mv.setViewName("redirect:./productList");
+		return mv;
+	}
+	@GetMapping("productOptionAdd")
+	public ModelAndView setProductOptionAdd()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("./product/productOptionAdd");
+		return mv;
+	}
+	
+	@PostMapping("productOptionAdd")
+	public ModelAndView setProductOptionAdd(ProductDTO productDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = productService.setProductOptionAdd(productDTO);
+		mv.setViewName("redirect:./productDetail");
 		return mv;
 	}
 }

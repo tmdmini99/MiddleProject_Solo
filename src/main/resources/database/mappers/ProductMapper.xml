@@ -11,13 +11,21 @@
   		SELECT * FROM PRODUCT 
   									LEFT JOIN
   									PRODUCTFILES
+  									USING(PRODUCTNUM)
   									LEFT JOIN
   									PRODUCTOPTION
+  									USING(PRODUCTNUM)
+  									LEFT JOIN
+  									PRODUCTCATEGORY
+  									USING(PRODUCTNUM)
+  									LEFT JOIN
+  									CATEGORY
+  									USING(CATEGORYNUM)
   		WHERE PRODUCTNUM = #{productNum}
   	</select>
   	<resultMap type="ProductDTO" id="productDetails">
   		<id column="PRODUCTNUM" property="productNum"/>
-  		<result column="CATEGORYNUM" property="categoryNum"/>
+  		
   		<result column="ID" property="id"/>
   		<result column="PRODUCTNAME" property="productName"/>
   		<result column="DISCOUNT" property="discount"/>
@@ -40,16 +48,27 @@
   			<result column="FILENAME" property="fileName"/>
   			<result column="ORINAME" property="oriName"/>
   		</collection>
+  		
+  		<collection property="categorieDTOs" javaType="List" ofType="CategoryDTO">
+  			<id column="CATEGORYNUM" property="categoryNum"/>
+  			<result column="CATEGORYNAME" property="categoryName"/>
+  		</collection>
   	</resultMap>
   	
   	<insert id="setProductOptionAdd" parameterType="ProductOptionDTO">
   	<selectKey order="BEFORE" resultType="Long" keyProperty="optionNum">
   	SELECT PRODUCTOPTION_SEQ.NEXTVAL FROM DUAL
   	</selectKey>
-  	INSERT INTO PRODUCTOPTION VALUES (#{optionNum},#{productNum},#{optionName},#{optionValue},#{productPrice},#{productStock},#{optionNum},#{depth},0)
+  		INSERT INTO PRODUCTOPTION VALUES (#{optionNum},#{productNum},#{optionName},#{optionValue},#{productPrice},#{productStock},#{optionNum},#{depth},0)
   	</insert>
   	<insert id="setProductAdd" parameterType="ProductDTO">
-  		INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL,#{productName},#{discount},#{discountPercent},#{productSales},#{categoryNum},#{id})
+  		<selectKey order="BEFORE" resultType="Long" keyProperty="productNum">
+  	SELECT PRODUCT_SEQ.NEXTVAL FROM DUAL
+  	</selectKey>
+  		INSERT INTO PRODUCT VALUES(#{productNum},#{productName},#{discount},#{discountPercent},#{productSales},#{id})
+  	</insert>
+  	<insert id="setProductCategoryAdd" parameterType="CategoryDTO">
+  	INSERT INTO PRODUCTCATEGORY VALUES(#{productNum},#{categoryNum})
   	</insert>
   	
   </mapper>

@@ -1,8 +1,19 @@
 package com.iu.s1.product;
 
-public class ProductCategory {
+public class CategoryDTO {
 	private Long categoryNum;
 	private String categoryName;
+	private Long productNum;
+	
+	
+	
+	
+	public Long getProductNum() {
+		return productNum;
+	}
+	public void setProductNum(Long productNum) {
+		this.productNum = productNum;
+	}
 	public Long getCategoryNum() {
 		return categoryNum;
 	}

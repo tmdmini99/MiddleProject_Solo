@@ -6,17 +6,35 @@ public class ProductDTO {
 	private Long productNum;
 	private String productName;
 	private Long discount;
-	private Long dicountPercent;
+	private Long discountPercent;
 	private Long productSales;
-	private List<ProductCategory> productCategories;
+	private List<CategoryDTO> categorieDTOs;
 	private List<ProductOptionDTO> productOptionDTOs;
 	private List<ProductFileDTO> productFileDTOs;
+	private String id;
 	
 	
 	
 	
 	
 	
+	
+	
+	
+	
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public List<CategoryDTO> getCategorieDTOs() {
+		return categorieDTOs;
+	}
+	public void setCategorieDTOs(List<CategoryDTO> categorieDTOs) {
+		this.categorieDTOs = categorieDTOs;
+	}
 	public List<ProductFileDTO> getProductFileDTOs() {
 		return productFileDTOs;
 	}
@@ -31,12 +49,7 @@ public class ProductDTO {
 		this.productOptionDTOs = productOptionDTOs;
 	}
 	
-	public List<ProductCategory> getProductCategories() {
-		return productCategories;
-	}
-	public void setProductCategories(List<ProductCategory> productCategories) {
-		this.productCategories = productCategories;
-	}
+	
 	public Long getProductNum() {
 		return productNum;
 	}
@@ -55,11 +68,12 @@ public class ProductDTO {
 	public void setDiscount(Long discount) {
 		this.discount = discount;
 	}
-	public Long getDicountPercent() {
-		return dicountPercent;
+	
+	public Long getDiscountPercent() {
+		return discountPercent;
 	}
-	public void setDicountPercent(Long dicountPercent) {
-		this.dicountPercent = dicountPercent;
+	public void setDiscountPercent(Long discountPercent) {
+		this.discountPercent = discountPercent;
 	}
 	public Long getProductSales() {
 		return productSales;

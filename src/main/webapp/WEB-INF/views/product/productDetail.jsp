@@ -12,10 +12,12 @@
 <c:import url="../template/header.jsp"></c:import>
 
 ${dto.productNum}
-${dto.categoryNum}
+<c:forEach items="${dto.categorieDTOs}" var="list">
+${list.categoryName}
+</c:forEach>
 ${dto.productName}
 ${dto.discount}
-${dto.dicountPercent}
+${dto.discountPercent}
 ${dto.productSales}
 
 <!-- Button trigger modal -->
@@ -51,6 +53,7 @@ ${dto.productSales}
   </div>
 </div>
 
+<a href="./productOptionAdd" class="btn btn-primary">옵션 추가</a>
 
 <c:import url="../template/common_js.jsp"></c:import>
 </body>
