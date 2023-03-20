@@ -10,11 +10,20 @@ public class ProductOptionDTO {
 	private Long ref;
 	private Long depth;
 	private Long step;
+	private ProductOptionDTO [] sub;
 	
 	
 	
 	
 	
+	
+	
+	public ProductOptionDTO[] getSub() {
+		return sub;
+	}
+	public void setSub(ProductOptionDTO[] sub) {
+		this.sub = sub;
+	}
 	public Long getRef() {
 		return ref;
 	}

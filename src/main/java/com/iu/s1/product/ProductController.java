@@ -2,12 +2,23 @@ package com.iu.s1.product;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.ibatis.javassist.expr.NewArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Jsr330ScopeMetadataResolver;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import oracle.net.aso.j;
 
 @Controller
 @RequestMapping(value="/product/*")
@@ -57,10 +68,25 @@ public class ProductController {
 	}
 	
 	@PostMapping("productOptionAdd")
-	public ModelAndView setProductOptionAdd(ProductDTO productDTO)throws Exception{
+	public ModelAndView setProductOptionAdd(HttpServletRequest request)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		int result = productService.setProductOptionAdd(productDTO);
-		mv.setViewName("redirect:./productDetail");
+		String json1 = request.getParameter("json1");
+		
+		Gson gson = new Gson();
+		ProductOptionDTO [] productOptionDTOs =gson.fromJson(json1, ProductOptionDTO[].class);
+		if(productOptionDTOs != null) {
+		System.out.println(productOptionDTOs[0].getSub()[0].getOptionValue());
+		System.out.println(productOptionDTOs[0].getSub()[1].getOptionValue());
+		}
+//		ProductOptionDTO [] productOptionDTOs =gson.fromJson(json1, ProductOptionDTO[].class);
+//		if(productOptionDTOs != null) {
+//		for(ProductOptionDTO productOptionDTO : productOptionDTOs) {
+//			System.out.println(productOptionDTO.getOptionName());
+//			System.out.println(productOptionDTO.getOptionValue());
+//		}
+//		}
+		//int result = productService.setProductOptionAdd(productDTO);
+		//mv.setViewName("redirect:./productDetail");
 		return mv;
 	}
 }

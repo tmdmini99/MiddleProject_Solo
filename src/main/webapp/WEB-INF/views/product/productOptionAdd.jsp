@@ -11,17 +11,18 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 <form action="./productOptionAdd" method="post" id="frm">
+    <input type="hidden" name="json1" id="json1">
     <div class="opi">
             <button type="button" class="oi">옵션 네임</button>
         <div class="op">
-        OptionName:<input type="text" name="optionName">
-        OptionValue :<input type="text" name="optionValue">
-        <!-- <button type="button" class="opv">벨류 추가</button> -->
+        OptionName:<input type="text" name="optionName" id="idx1" data-value="idx1">
+        OptionValue :<input type="text" name="optionValue" class="idx1" data-value="idx2">
+        <!-- <button type="button" class="opv">벨류 추가</button>  -->
         <button type="button" class="opc">새로운 옵션</button>
-        <button type="button" class="opd">옵션 삭제</button>
+        <button type="button" class="opdd">옵션 삭제</button>
         </div>
         </div>
-<button type="submit">옵션 생성하기</button>
+<button type="button" id="btn">옵션 생성하기</button>
 </form>
 
 <script src="/resources/js/productOption.js"></script>
