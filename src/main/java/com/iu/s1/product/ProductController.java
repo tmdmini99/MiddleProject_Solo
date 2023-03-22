@@ -71,13 +71,13 @@ public class ProductController {
 	public ModelAndView setProductOptionAdd(HttpServletRequest request)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		String json1 = request.getParameter("json1");
-		
+
 		Gson gson = new Gson();
 		ProductOptionDTO [] productOptionDTOs =gson.fromJson(json1, ProductOptionDTO[].class);
 		if(productOptionDTOs != null) {
 	
-		System.out.println(productOptionDTOs[0].getSub()[0].getOptionValue());
-		System.out.println(productOptionDTOs[0].getSub()[1].getOptionValue());
+		System.out.println(productOptionDTOs[0].getSub()[0].getOptionValues());
+		//System.out.println(productOptionDTOs[0].getSub()[1].getOptionValue());
 		}
 //		ProductOptionDTO [] productOptionDTOs =gson.fromJson(json1, ProductOptionDTO[].class);
 //		if(productOptionDTOs != null) {
@@ -88,6 +88,7 @@ public class ProductController {
 //		}
 		//int result = productService.setProductOptionAdd(productDTO);
 		//mv.setViewName("redirect:./productDetail");
+		mv.setViewName("./product/productOptionAdd");
 		return mv;
 	}
 }
