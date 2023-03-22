@@ -126,8 +126,8 @@ $("#btn").click(function(){
 }
     console.log(jsonarq);
     
-
-
+    let sj = [{"optionName" : "dd", "optionValue" : "11", "sub":{"optionName" : "dd", "optionValue" : "11"}}]
+    alert("확인");
     $("#json1").val(JSON.stringify(jsonarq));
     $("#frm").submit();
 })

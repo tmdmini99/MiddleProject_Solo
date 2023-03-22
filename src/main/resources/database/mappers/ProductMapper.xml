@@ -59,7 +59,7 @@
   	<selectKey order="BEFORE" resultType="Long" keyProperty="optionNum">
   	SELECT PRODUCTOPTION_SEQ.NEXTVAL FROM DUAL
   	</selectKey>
-  		INSERT INTO PRODUCTOPTION VALUES (#{optionNum},#{productNum},#{optionName},#{optionValue},#{productPrice},#{productStock},#{optionNum},#{depth},0)
+  		INSERT INTO PRODUCTOPTION VALUES (#{optionNum},#{productNum},#{optionName},#{optionValue},#{productPrice},#{productStock},#{ref},#{depth})
   	</insert>
   	<insert id="setProductAdd" parameterType="ProductDTO">
   		<selectKey order="BEFORE" resultType="Long" keyProperty="productNum">
@@ -70,5 +70,10 @@
   	<insert id="setProductCategoryAdd" parameterType="CategoryDTO">
   	INSERT INTO PRODUCTCATEGORY VALUES(#{productNum},#{categoryNum})
   	</insert>
+  	
+  	<select id="getProductOptionNum" parameterType="ProductOptionDTO" resultType="ProductOptionDTO">
+  		SELECT MIN(OPTIONNUM) FROM PRODUCTOPTION WHERE OPTIONVALUE = #{optionValue}
+  		
+  	</select>
   	
   </mapper>

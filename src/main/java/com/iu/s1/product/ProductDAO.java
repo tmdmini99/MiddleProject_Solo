@@ -19,13 +19,16 @@ public class ProductDAO {
 	public ProductDTO getProductDetail(ProductDTO productDTO) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getProductDetail", productDTO);
 	}
-	public int setProductOptionAdd(ProductDTO productDTO)throws Exception{
-		return sqlSession.insert(NAMESPACE+"ProductDTO productDTO", productDTO);
+	public int setProductOptionAdd(ProductOptionDTO productOptionDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"setProductOptionAdd", productOptionDTO);
 	}
 	public int setProductAdd(ProductDTO productDTO)throws Exception{
 		return sqlSession.insert(NAMESPACE+"setProductAdd", productDTO);
 	}
 	public int setProductCategoryAdd(CategoryDTO productCategoryDTO)throws Exception{
 		return sqlSession.insert(NAMESPACE+"setProductCategoryAdd", productCategoryDTO);
+	}
+	public ProductOptionDTO getProductOptionNum(ProductOptionDTO productOptionDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getProductOptionNum", productOptionDTO);
 	}
  }

@@ -53,7 +53,7 @@ ${dto.productSales}
   </div>
 </div>
 
-<a href="./productOptionAdd" class="btn btn-primary">옵션 추가</a>
+<a href="./productOptionAdd?productNum=${dto.productNum}" class="btn btn-primary">옵션 추가</a>
 
 <c:import url="../template/common_js.jsp"></c:import>
 </body>

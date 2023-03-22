@@ -61,23 +61,24 @@ public class ProductController {
 		return mv;
 	}
 	@GetMapping("productOptionAdd")
-	public ModelAndView setProductOptionAdd()throws Exception{
+	public ModelAndView setProductOptionAdd(ProductDTO productDTO)throws Exception{
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("dto", productDTO);
 		mv.setViewName("./product/productOptionAdd");
 		return mv;
 	}
 	
 	@PostMapping("productOptionAdd")
-	public ModelAndView setProductOptionAdd(HttpServletRequest request)throws Exception{
+	public ModelAndView setProductOptionAdd(ProductOptionDTO productOptionDTO,HttpServletRequest request)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		String json1 = request.getParameter("json1");
-		
+		System.out.println(json1);
 		Gson gson = new Gson();
 		ProductOptionDTO [] productOptionDTOs =gson.fromJson(json1, ProductOptionDTO[].class);
+		System.out.println(productOptionDTO.getProductNum());
+		int result = 0;
 		if(productOptionDTOs != null) {
-	
-		System.out.println(productOptionDTOs[0].getSub()[0].getOptionValue());
-		System.out.println(productOptionDTOs[0].getSub()[1].getOptionValue());
+			result=productService.setProductOptionAdd(productOptionDTOs,productOptionDTO);
 		}
 //		ProductOptionDTO [] productOptionDTOs =gson.fromJson(json1, ProductOptionDTO[].class);
 //		if(productOptionDTOs != null) {
@@ -87,7 +88,7 @@ public class ProductController {
 //		}
 //		}
 		//int result = productService.setProductOptionAdd(productDTO);
-		//mv.setViewName("redirect:./productDetail");
+		mv.setViewName("redirect:./productList");
 		return mv;
 	}
 }

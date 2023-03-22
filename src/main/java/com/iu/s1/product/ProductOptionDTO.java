@@ -10,7 +10,7 @@ public class ProductOptionDTO {
 	private Long ref;
 	private Long depth;
 	private Long step;
-	private ProductOptionDTO [] sub;
+	private ProductOptionDTO sub;
 	private String [] optionValues;
 	
 	
@@ -24,10 +24,11 @@ public class ProductOptionDTO {
 	public void setOptionValues(String[] optionValues) {
 		this.optionValues = optionValues;
 	}
-	public ProductOptionDTO[] getSub() {
+	
+	public ProductOptionDTO getSub() {
 		return sub;
 	}
-	public void setSub(ProductOptionDTO[] sub) {
+	public void setSub(ProductOptionDTO sub) {
 		this.sub = sub;
 	}
 	public Long getRef() {
