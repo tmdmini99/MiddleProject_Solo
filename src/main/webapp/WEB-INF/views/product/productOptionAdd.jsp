@@ -15,10 +15,10 @@
     <div class="opi">
             <button type="button" class="oi">옵션 네임</button>
         <div class="op">
-        OptionName:<input type="text" name="optionName" id="idx1" data-value="idx1">
-        OptionValue :<input type="text" name="optionValue" class="idx1" data-value="idx2">
+        OptionName:<input type="text" name="optionName"  class="1">
+        OptionValue :<input type="text" name="optionValue" class="idx1" data-count="1">
         <!-- <button type="button" class="opv">벨류 추가</button>  -->
-        <button type="button" class="opc">새로운 옵션</button>
+        <button type="button" class="opc" data-name="1" data-count="1">새로운 옵션</button>
         <button type="button" class="opdd">옵션 삭제</button>
         </div>
         </div>

@@ -75,6 +75,7 @@ public class ProductController {
 		Gson gson = new Gson();
 		ProductOptionDTO [] productOptionDTOs =gson.fromJson(json1, ProductOptionDTO[].class);
 		if(productOptionDTOs != null) {
+	
 		System.out.println(productOptionDTOs[0].getSub()[0].getOptionValue());
 		System.out.println(productOptionDTOs[0].getSub()[1].getOptionValue());
 		}
