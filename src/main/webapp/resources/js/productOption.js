@@ -91,13 +91,13 @@ $("#btn").click(function(){
         let json2={}
         let json3={}
         let jsonar = []
-        $(".idx"+i*10).each(function(){
+        $(".idx"+i*10).each(function(idx, item){
             console.log("id2"+$(this).val())
             
             jsonar.push($(this).val())
             let jsonArr = []  
             console.log("name1 :"+$("."+i*10).val())
-           $(".idx"+i*100).each(function(){
+           $(item).next().next().children(".idx"+i*100).each(function(){
                  
                 jsonArr.push($(this).val())
                 console.log("id3"+$(this).val())
@@ -106,28 +106,32 @@ $("#btn").click(function(){
                 
             })
             json3["optionName"] = $("."+i*100).val()
-            json3["optionValues"] =jsonArr
+            json3["optionValues"] =jsonArr;
             
 
            
             
 
-    })
+    })      
             json2["optionName"] = $("."+i*10).val()
             json2["optionValues"] =jsonar
-            json2["sub"] =json3     
+            json2["sub"] =json3  
     json1={
         "optionName" : $("."+i).val(),
         "optionValue": $(".idx"+i).val(),
         "sub" : json2
+    
     }
+    
     console.log(json1)
     jsonarq.push(json1);
 }
     console.log(jsonarq);
+       
     
 
-
-    $("#json1").val(JSON.stringify(jsonarq));
-    $("#frm").submit();
+    let json=[{"optionName" : "sss", "optionValue" : "ddd", "sub" : {"optionName" : "sss", "optionValue" : "ddd"}},{"optionName" : "ddd", "optionValue" : "ddd", "sub" : {"optionName" : "sss", "optionValue" : "ddd"}}]
+    alert("확인")
+    $("#json1").val(JSON.stringify(json));
+    //$("#frm").submit();
 })
