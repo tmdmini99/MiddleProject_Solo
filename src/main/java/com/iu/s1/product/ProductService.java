@@ -2,9 +2,14 @@ package com.iu.s1.product;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.iu.s1.util.FileManager;
+import com.iu.s1.util.Pager;
 
 @Service
 public class ProductService {
@@ -12,13 +17,18 @@ public class ProductService {
 	@Autowired
 	private ProductDAO productDAO;
 	
-	public List<ProductDTO> getProductList() throws Exception{
+	@Autowired
+	private FileManager fileManager;
+	
+	public List<ProductDTO> getProductList(Pager pager) throws Exception{
+		
 		return productDAO.getProductList();
 	}
 	public ProductDTO getProductDetail(ProductDTO productDTO) throws Exception{
+		
 		return productDAO.getProductDetail(productDTO);
 	}
-	public int setProductAdd(ProductDTO productDTO,Long [] categoryNums)throws Exception{
+	public int setProductAdd(ProductDTO productDTO,Long [] categoryNums, MultipartFile [] files,HttpSession session)throws Exception{
 		
 		int result=productDAO.setProductAdd(productDTO);
 		if(result>0) {
@@ -27,6 +37,20 @@ public class ProductService {
 			for(Long categoryNum : categoryNums) {
 				productCategoryDTO.setCategoryNum(categoryNum);
 				result =productDAO.setProductCategoryAdd(productCategoryDTO);
+			}
+			String realPath = session.getServletContext().getRealPath("/resources/upload/product/");
+			for(MultipartFile file : files) {
+				if(file.isEmpty()) {
+					continue;
+				}
+				
+				String name = fileManager.fileSave(realPath, file);
+				ProductFileDTO productFileDTO = new ProductFileDTO();
+				productFileDTO.setOriName(file.getOriginalFilename());
+				productFileDTO.setFileName(name);
+				productFileDTO.setProductNum(productDTO.getProductNum());
+				result = productDAO.setProductFileAdd(productFileDTO);
+				
 			}
 		}
 		return result;
@@ -86,7 +110,8 @@ public class ProductService {
 					
 				}
 				productDAO.setProductOptionUpdate(optionDTO);
-				
+				productOptionDTO.setRef(productOptionDTO.getOptionNum());
+				result = productDAO.setProductOptionRefUpdate(productOptionDTO);
 				
 				
 			

@@ -78,5 +78,11 @@
   	<update id="setProductOptionUpdate" parameterType="ProductOptionDTO">
   		UPDATE PRODUCTOPTION SET PRODUCTPRICE=#{productPrice} WHERE OPTIONNUM=#{ref}
   	</update>
+  	<update id="setProductOptionRefUpdate" parameterType="ProductOptionDTO">
+  		UPDATE PRODUCTOPTION SET REF=#{ref} WHERE OPTIONNUM=#{optionNum}
+  	</update>
+  	<insert id="setProductFileAdd" parameterType="ProductFileDTO">
+  		INSERT INTO PRODUCTFILES VALUES(PRODUCTFILES_SEQ.NEXTVAL,#{productNum},#{fileName},#{oriName})
+  	</insert>
   	
   </mapper>

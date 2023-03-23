@@ -13,6 +13,7 @@
  		<typeAlias type="com.iu.s1.product.CategoryDTO" alias="CategoryDTO"/>
  		<typeAlias type="com.iu.s1.product.ProductOptionDTO" alias="ProductOptionDTO"/>
  		<typeAlias type="com.iu.s1.product.ProductFileDTO" alias="ProductFileDTO"/>
+ 		<typeAlias type="com.iu.s1.product.ProductFileDTO" alias="ProductFileDTO"/>
   </typeAliases>
   
   

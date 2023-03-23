@@ -34,4 +34,11 @@ public class ProductDAO {
 	public int setProductOptionUpdate(ProductOptionDTO productOptionDTO)throws Exception{
 		return sqlSession.update(NAMESPACE+"setProductOptionUpdate", productOptionDTO);
 	}
+	
+	public int setProductOptionRefUpdate(ProductOptionDTO productOptionDTO)throws Exception{
+		return sqlSession.update(NAMESPACE+"setProductOptionRefUpdate", productOptionDTO);
+	}
+	public int setProductFileAdd(ProductFileDTO productFileDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setProductFileAdd", productFileDTO);
+	}
  }

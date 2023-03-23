@@ -10,7 +10,7 @@
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
-<form action="./productAdd" method="post">
+<form action="./productAdd" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="id" value="${member.id}">
 	productName : <input type="text" name="productName">
 	<div id="catdiv">
@@ -35,9 +35,24 @@
 	ProductSales ok : <input type="radio" checked name="productSales" value="1">
 	ProductSales no : <input type="radio" name="productSales" value="0">
 		
+	<div id="fileList">
+		<!-- <div class="mb-3">
+			<label for="files" class="form-label">Image</label>
+			<input type="file" class="form-control" id="files" name="pic">
+		</div> -->
+		
+		<button type="button" id="btn3">add</button>
+		
+	</div>
+
 	<button type="submit">상품 등록</button>
 </form>
 <script src="/resources/js/productCategory.js"></script>
 <c:import url="../template/common_js.jsp"></c:import>
+<script>
+	setMax(3);
+	
+	
+</script>
 </body>
 </html>
