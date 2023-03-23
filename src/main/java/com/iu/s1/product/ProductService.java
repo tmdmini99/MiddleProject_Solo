@@ -33,6 +33,9 @@ public class ProductService {
 	}
 	public int setProductOptionAdd(ProductOptionDTO[] productOptionDTOs,ProductOptionDTO productOptionDTO1)throws Exception{
 		int result = 0;
+		Long j=0L;
+		Long k=0L;
+		Long h;
 		for(ProductOptionDTO productOptionDTO : productOptionDTOs) {
 			ProductOptionDTO optionDTO=new ProductOptionDTO();
 
@@ -40,46 +43,50 @@ public class ProductService {
 				productOptionDTO.setDepth(0L);
 				productOptionDTO.setProductNum(productOptionDTO1.getProductNum());
 				productOptionDTO.setProductPrice(0L);
-				productOptionDTO.setProductStock(0L);
+				
 				productOptionDTO.setRef(0L);
 				result = productDAO.setProductOptionAdd(productOptionDTO);
 				System.out.println("Num :"+productOptionDTO.getOptionNum());
 				optionDTO.setOptionNum(productOptionDTO.getOptionNum());
-				System.out.println(optionDTO.getOptionNum());
-				if(productOptionDTO.getSub() != null&&productOptionDTO.getSub().getOptionValues().length >0) {
-					ProductOptionDTO dto = new ProductOptionDTO();
-					dto.setOptionName(productOptionDTO.getSub().getOptionName());
-					dto.setDepth(1L);
-					dto.setProductStock(0L);
-					dto.setProductPrice(0L);
-					optionDTO=productDAO.getProductOptionNum(productOptionDTO);
-					int c= 0;
-					for(String s : productOptionDTO.getSub().getOptionValues()) {
-						dto.setRef(optionDTO.getOptionNum());
-						dto.setOptionValue(s);
-						dto.setProductNum(productOptionDTO1.getProductNum());
-						dto.setProductStock(0L);
+				System.out.println("Num2 :"+optionDTO.getOptionNum());
+				System.out.println(productOptionDTO.getOptionValue());
+				if(productOptionDTO.getSub() != null) {
+					for(ProductOptionDTO dto : productOptionDTO.getSub()) {
+						dto.setDepth(1L);
+						
 						dto.setProductPrice(0L);
+						
+						dto.setProductNum(productOptionDTO1.getProductNum());
+						optionDTO.setOptionNum(productDAO.getProductOptionNum(productOptionDTO));
+						dto.setRef(productOptionDTO.getOptionNum());
 						result = productDAO.setProductOptionAdd(dto);
-						if(c !=0) {
-						optionDTO.setOptionNum(dto.getOptionNum());;
-						c++;
+						
+						Long a=dto.getSub()[0].getProductPrice();
+						if(dto.getSub() !=null) {
+							for(ProductOptionDTO dto2 :dto.getSub()) {
+								
+								if(a>dto2.getProductPrice()) {
+									a=dto2.getProductPrice();
+								}
+								optionDTO.setOptionNum(productDAO.getProductOptionNum(dto));
+								dto2.setProductNum(productOptionDTO1.getProductNum());
+								dto2.setDepth(2L);
+								
+								dto2.setRef(dto.getOptionNum());
+								optionDTO.setRef(dto2.getRef());
+								result = productDAO.setProductOptionAdd(dto2);
+							}
 						}
-					}
-					
-					dto.setDepth(2L);
-					dto.setOptionName(productOptionDTO.getSub().getSub().getOptionName());
-					if(productOptionDTO.getSub().getSub() != null&&productOptionDTO.getSub().getSub().getOptionValues().length >0) {
-						for(String y: productOptionDTO.getSub().getSub().getOptionValues()) {
-							dto.setRef(optionDTO.getOptionNum());
-							dto.setOptionValue(y);
-							dto.setProductNum(productOptionDTO1.getProductNum());
-							result = productDAO.setProductOptionAdd(dto);
-							
-						}
+						optionDTO.setProductPrice(a);
+						
+						productDAO.setProductOptionUpdate(optionDTO);
+						optionDTO.setRef(dto.getRef());
+						
 					}
 					
 				}
+				productDAO.setProductOptionUpdate(optionDTO);
+				
 				
 				
 			

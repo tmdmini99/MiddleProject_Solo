@@ -10,25 +10,25 @@ public class ProductOptionDTO {
 	private Long ref;
 	private Long depth;
 	private Long step;
-	private ProductOptionDTO sub;
-	private String [] optionValues;
+	private ProductOptionDTO [] sub;
 	
 	
 	
 	
 	
 	
-	public String[] getOptionValues() {
-		return optionValues;
-	}
-	public void setOptionValues(String[] optionValues) {
-		this.optionValues = optionValues;
-	}
 	
-	public ProductOptionDTO getSub() {
+	
+	
+	
+	
+	
+	
+	
+	public ProductOptionDTO[] getSub() {
 		return sub;
 	}
-	public void setSub(ProductOptionDTO sub) {
+	public void setSub(ProductOptionDTO[] sub) {
 		this.sub = sub;
 	}
 	public Long getRef() {

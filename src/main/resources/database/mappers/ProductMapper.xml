@@ -71,9 +71,12 @@
   	INSERT INTO PRODUCTCATEGORY VALUES(#{productNum},#{categoryNum})
   	</insert>
   	
-  	<select id="getProductOptionNum" parameterType="ProductOptionDTO" resultType="ProductOptionDTO">
-  		SELECT MIN(OPTIONNUM) FROM PRODUCTOPTION WHERE OPTIONVALUE = #{optionValue}
+  	<select id="getProductOptionNum" parameterType="ProductOptionDTO" resultType="Long">
+  		SELECT OPTIONNUM FROM PRODUCTOPTION WHERE OPTIONVALUE = #{optionValue}
   		
   	</select>
+  	<update id="setProductOptionUpdate" parameterType="ProductOptionDTO">
+  		UPDATE PRODUCTOPTION SET PRODUCTPRICE=#{productPrice} WHERE OPTIONNUM=#{ref}
+  	</update>
   	
   </mapper>

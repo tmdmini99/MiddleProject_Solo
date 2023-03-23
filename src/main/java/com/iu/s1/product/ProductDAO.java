@@ -28,7 +28,10 @@ public class ProductDAO {
 	public int setProductCategoryAdd(CategoryDTO productCategoryDTO)throws Exception{
 		return sqlSession.insert(NAMESPACE+"setProductCategoryAdd", productCategoryDTO);
 	}
-	public ProductOptionDTO getProductOptionNum(ProductOptionDTO productOptionDTO)throws Exception{
+	public Long getProductOptionNum(ProductOptionDTO productOptionDTO)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getProductOptionNum", productOptionDTO);
+	}
+	public int setProductOptionUpdate(ProductOptionDTO productOptionDTO)throws Exception{
+		return sqlSession.update(NAMESPACE+"setProductOptionUpdate", productOptionDTO);
 	}
  }
