@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.iu.s1.util.Pager;
 @Repository
 public class ProductDAO {
 	
@@ -40,5 +42,11 @@ public class ProductDAO {
 	}
 	public int setProductFileAdd(ProductFileDTO productFileDTO) throws Exception{
 		return sqlSession.insert(NAMESPACE+"setProductFileAdd", productFileDTO);
+	}
+	public List<ProductOptionDTO> getProductOptionList(ProductOptionDTO productOptionDTO) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getProductOptionList", productOptionDTO);
+	}
+	public Long getTotalCount(Pager pager) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getTotalCount", pager);
 	}
  }

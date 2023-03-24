@@ -1,5 +1,6 @@
 package com.iu.s1.product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -21,7 +22,8 @@ public class ProductService {
 	private FileManager fileManager;
 	
 	public List<ProductDTO> getProductList(Pager pager) throws Exception{
-		
+		pager.makeRow();
+		pager.makeNum(productDAO.getTotalCount(pager));
 		return productDAO.getProductList();
 	}
 	public ProductDTO getProductDetail(ProductDTO productDTO) throws Exception{
@@ -59,7 +61,7 @@ public class ProductService {
 		int result = 0;
 		Long j=0L;
 		Long k=0L;
-		Long h;
+		List<Long> h = new ArrayList<Long>();
 		for(ProductOptionDTO productOptionDTO : productOptionDTOs) {
 			ProductOptionDTO optionDTO=new ProductOptionDTO();
 
@@ -74,23 +76,31 @@ public class ProductService {
 				optionDTO.setOptionNum(productOptionDTO.getOptionNum());
 				System.out.println("Num2 :"+optionDTO.getOptionNum());
 				System.out.println(productOptionDTO.getOptionValue());
+				//첫번째 옵션
 				if(productOptionDTO.getSub() != null) {
+					Long a=productOptionDTO.getSub()[0].getSub()[0].getProductPrice();
 					for(ProductOptionDTO dto : productOptionDTO.getSub()) {
 						dto.setDepth(1L);
 						
 						dto.setProductPrice(0L);
 						
 						dto.setProductNum(productOptionDTO1.getProductNum());
-						optionDTO.setOptionNum(productDAO.getProductOptionNum(productOptionDTO));
+						
+							
+							optionDTO.setOptionNum(productDAO.getProductOptionNum(productOptionDTO));
+						
 						dto.setRef(productOptionDTO.getOptionNum());
 						result = productDAO.setProductOptionAdd(dto);
 						
-						Long a=dto.getSub()[0].getProductPrice();
+						
+						
+						//2번째 옵션
 						if(dto.getSub() !=null) {
 							for(ProductOptionDTO dto2 :dto.getSub()) {
 								
 								if(a>dto2.getProductPrice()) {
 									a=dto2.getProductPrice();
+									h.add(a);
 								}
 								optionDTO.setOptionNum(productDAO.getProductOptionNum(dto));
 								dto2.setProductNum(productOptionDTO1.getProductNum());
@@ -106,12 +116,17 @@ public class ProductService {
 						productDAO.setProductOptionUpdate(optionDTO);
 						optionDTO.setRef(dto.getRef());
 						
+						
+					}
+					for(Long as : h) {
+						if(a > as) {
+							optionDTO.setProductPrice(as);
+						}
 					}
 					
 				}
 				productDAO.setProductOptionUpdate(optionDTO);
-				productOptionDTO.setRef(productOptionDTO.getOptionNum());
-				result = productDAO.setProductOptionRefUpdate(productOptionDTO);
+				
 				
 				
 			
@@ -128,5 +143,8 @@ public class ProductService {
 			
 		}
 		return result;
+	}
+	public List<ProductOptionDTO> getProductOptionList(ProductOptionDTO productOptionDTO) throws Exception{
+		return productDAO.getProductOptionList(productOptionDTO);
 	}
 }

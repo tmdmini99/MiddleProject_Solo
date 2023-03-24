@@ -22,34 +22,8 @@
 
 
 
-<!-- Button trigger modal -->
 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-       <select class="form-select" name="categoryNum" id="categoryName">
-				<option value= >${op.optionName}</option>
-				<c:forEach items="${dto.productOptionDTOs}" var="op">
-					<option value="${op.optionNum}" >${op.optionValue}</option>
-				</c:forEach>
-				
-				
-			</select>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
 
       
         
@@ -86,9 +60,10 @@
                         <h1 class="display-5 fw-bolder">${dto.productName}</h1>
                         <div class="fs-5 mb-5">
                             <c:if test="${not empty dto.productOptionDTOs}">
-                            	<span class="text-decoration-line-through">$${dto.productOptionDTOs.productPrice}</span>
+                            	<span class="text-decoration-line-through">$${dto.productOptionDTOs[0].productPrice}</span>
                             </c:if>
                             <span>$${dto.discount}</span>
+                            
                         </div>
                         <div>
                         	<c:choose>
@@ -101,9 +76,10 @@
                         	</c:choose>
                         
                         </div>
-                        <div><p class="lead">ㅋ</div>
-                      	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
- 													 	옵션 선택
+                        <div><p class="lead">ㅋ </div>
+                            <div class="nasss"></div>
+                      	<button type="button" class="btn btn-primary"  id="optionBtn" data-productNum="${dto.productNum}" data-optionNum="${dto.productOptionDTOs[0].optionNum}">
+ 													 	옵션 선택 
 												</button>
                         <div class="d-flex">
                             <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
@@ -116,7 +92,7 @@
                     </div>
                 </div>
                   <c:forEach items="${dto.categorieDTOs}" var="list">
-								#${list.categoryName}
+								#${list.categoryName} 
 						</c:forEach>
             </div>
           
@@ -241,7 +217,7 @@
 
 
 
-
+<script src="/resources/js/productOptionDetail.js"></script>
 <c:import url="../template/common_js.jsp"></c:import>
 </body>
 </html>

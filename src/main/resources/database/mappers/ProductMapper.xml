@@ -4,6 +4,31 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
   <mapper namespace="com.iu.s1.product.ProductDAO">
+  	
+  	<sql id="Condition">
+  	<if test="kind == 'title'">
+  		<trim prefix="where">
+  			TITLE LIKE '%'||#{search}||'%'
+  		</trim>
+  	</if>
+  	<if test="kind == 'contents'">
+  		<trim prefix="where">
+  			CONTENTS LIKE '%'||#{search}||'%'
+  		</trim>
+  	</if>
+  	<if test="kind =='writer'">
+  		<trim prefix="where">
+  			WRITER LIKE '%'||#{search}||'%'
+  		</trim>
+  	</if>
+  </sql>
+  
+  <select id="getTotalCount" parameterType="Pager" resultType="Long">
+  	SELECT COUNT(PRODUCTNUM) FROM PRODUCT
+  	<include refid="Condition"></include>
+  </select>
+  	
+  	
   	<select id="getProductList" resultType="ProductDTO">
   		SELECT * FROM PRODUCT
   	</select>
@@ -33,7 +58,7 @@
   		<result column="PRODUCTSALES" property="productSales"/>
   		
   		<collection property="productOptionDTOs" javaType="List" ofType="ProductOptionDTO">
-  			<id column="OPTIONNUM" property="optionName"/>
+  			<id column="OPTIONNUM" property="optionNum"/>
   			<result column="OPTIONNAME" property="optionName"/>
   			<result column="OPTIONVALUE" property="optionValue"/>
   			<result column="PRODUCTPRICE" property="productPrice"/>
@@ -72,7 +97,7 @@
   	</insert>
   	
   	<select id="getProductOptionNum" parameterType="ProductOptionDTO" resultType="Long">
-  		SELECT OPTIONNUM FROM PRODUCTOPTION WHERE OPTIONVALUE = #{optionValue}
+  		SELECT MAX(OPTIONNUM) FROM PRODUCTOPTION WHERE OPTIONVALUE = #{optionValue}
   		
   	</select>
   	<update id="setProductOptionUpdate" parameterType="ProductOptionDTO">
@@ -84,5 +109,8 @@
   	<insert id="setProductFileAdd" parameterType="ProductFileDTO">
   		INSERT INTO PRODUCTFILES VALUES(PRODUCTFILES_SEQ.NEXTVAL,#{productNum},#{fileName},#{oriName})
   	</insert>
+  	<select id="getProductOptionList" parameterType="ProductOptionDTO" resultType="ProductOptionDTO">
+  		SELECT * FROM PRODUCTOPTION WHERE PRODUCTNUM=#{productNum} AND REF=#{ref} AND DEPTH=#{depth}
+  	</select>
   	
   </mapper>

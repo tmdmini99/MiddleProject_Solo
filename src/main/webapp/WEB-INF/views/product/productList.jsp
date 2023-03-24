@@ -62,7 +62,7 @@
 		
 			</div>
 			<!-- 검색창 -->
-			<form class="row g-3" action="./list" method="name" id="searchForm">
+			<form class="row g-3" action="./productList" method="get" id="searchForm">
 				<input type="hidden" name="page" value="1" id="page">
 				<div class="col-auto">
 					<label for="kind" class="visually-hidden">Kind</label>
@@ -91,15 +91,7 @@
 	</div>
 </nav>
 
-<!-- Header-->
-<header class="bg-dark py-5">
-	<div class="container px-4 px-lg-5 my-5">
-		<div class="text-center text-white">
-			<h1 class="display-4 fw-bolder">Shop in style</h1>
-			<p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
-		</div>
-	</div>
-</header>
+
 <!-- Section-->
 <section class="py-5">
 	<div class="container px-4 px-lg-5 mt-5">

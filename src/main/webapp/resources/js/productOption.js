@@ -47,12 +47,13 @@ $("#frm").on("click",".opc",function(e){
 
 $("#frm").on("click",".opci",function(e){
     let nas=
-    'OptionName:<input type="text" name="optionName" class="'+10*$(this).attr('data-name')+'">'
+    '<div>'
+    +'OptionName:<input type="text" name="optionName" class="'+10*$(this).attr('data-name')+'">'
     +'OptionValue :<input type="text" name="optionValue" class="idx'+ 10*$(this).attr('data-count') +'">'
     +'가격 :<input type="text" name="productPrice" class="proP'+$(this).attr('data-name')+'">'
     +'재고 :<input type="text" name="productStock" class="proS'+$(this).attr('data-name')+'">'
     +'<button type="button" class="opd">옵션 삭제</button>'
-       
+    +'</div>'
     
     
     $(this).next().next().append(nas);
@@ -106,7 +107,7 @@ $("#btn").click(function(){
             console.log("item :",$(item).next().next().next().next())
             //ram
             let b=0;
-           $(item).next().next().next().children(".idx"+i*100).each(function(idx,item){
+           $(item).next().next().next().children().children(".idx"+i*100).each(function(idx,item){
             console.log("item stock :",$(item).next())
             console.log("item stock :",$(item).next().next())
                 let json3={}

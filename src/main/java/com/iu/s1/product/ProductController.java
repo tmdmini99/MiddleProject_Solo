@@ -44,24 +44,7 @@ public class ProductController {
 	public ModelAndView getProductDetail(ProductDTO productDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		productDTO=productService.getProductDetail(productDTO);
-		List<List> ar = new ArrayList<List>();
-		List<ProductOptionDTO> ar1 = new ArrayList<ProductOptionDTO>();
-		List<ProductOptionDTO> ar2 = new ArrayList<ProductOptionDTO>();
-		List<ProductOptionDTO> ar3 = new ArrayList<ProductOptionDTO>();
-		for(ProductOptionDTO productOptionDTO : productDTO.getProductOptionDTOs()) {
-			if(productOptionDTO.getDepth() ==0) {
-				ar1.add(productOptionDTO);
-			}else if(productOptionDTO.getDepth() ==1){
-				ar2.add(productOptionDTO);
-			}else {
-				ar3.add(productOptionDTO);
-			}
-		}
-		ar.add(ar1);
-		ar.add(ar2);
-		ar.add(ar3);
 		
-		mv.addObject("pro", ar);
 		mv.addObject("dto", productDTO);
 		mv.setViewName("./product/productDetail");
 		return mv;
@@ -111,6 +94,15 @@ public class ProductController {
 //		}
 		//int result = productService.setProductOptionAdd(productDTO);
 		mv.setViewName("redirect:./productList");
+		return mv;
+	}
+	@PostMapping("productOptionList")
+	public ModelAndView getProductOptionList(ProductOptionDTO productOptionDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<ProductOptionDTO> ar = productService.getProductOptionList(productOptionDTO);
+		
+		mv.addObject("list", ar);
+		mv.setViewName("common/productOptionList");
 		return mv;
 	}
 }
