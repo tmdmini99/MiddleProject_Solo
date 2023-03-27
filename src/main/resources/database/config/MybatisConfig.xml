@@ -14,7 +14,8 @@
  		<typeAlias type="com.iu.s1.product.ProductOptionDTO" alias="ProductOptionDTO"/>
  		<typeAlias type="com.iu.s1.product.ProductFileDTO" alias="ProductFileDTO"/>
  		<typeAlias type="com.iu.s1.product.ProductFileDTO" alias="ProductFileDTO"/>
- 		<typeAlias type="com.iu.s1.util.Pager" alias="Pager"/>
+ 		<typeAlias type="com.iu.s1.util.Pager" alias="Pager"/>	
+ 		<typeAlias type="com.iu.s1.cart.CartDTO" alias="CartDTO"/>
   </typeAliases>
   
   

@@ -4,8 +4,11 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
   <mapper namespace="com.iu.s1.cart.cartDAO">
-  <insert id="setCartAdd">
-  	INSERT INTO PRODUCTORDER VALUES(PRODUCTORDER_SEQ.NEXTVAL,#{productNum},#{id},#{totalPrice},#{productEa},SYSDATE,#{buyCheck},#{payMentCheck},#{optionNum})
+  <insert id="setCartAdd" parameterType="CartDTO">
+  	INSERT INTO CART VALUES(CART_SEQ.NEXTVAL,#{id},#{productNum},#{count},#{optionNum},#{price})
   </insert>
   
+  <select id="getCartPrice" parameterType="CartDTO" resultType="Long">
+  	SELECT PRODUCTPRICE FROM PRODUCTOPTION WHERE OPTIONNUM=#{optionNum}
+  </select>
   </mapper>

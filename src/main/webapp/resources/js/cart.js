@@ -1,4 +1,5 @@
 let abc = true;
+
 $(".cartBtn").click(function(){
     console.log("cart");
     let orderNum=[];
@@ -22,24 +23,32 @@ $(".cartBtn").click(function(){
         $(".options").each(function(index,item){
             $(item).find(".opt").each(function(i,it){
                 orderNum.push($(it).val());
+                
+                console.log("data-price :",$(".proPrice").attr("data-price"))
 
             })
+            $(item).find(".opt:last")
             let ea = $(".productEa").val();
+            console.log("orderNum :",orderNum)
+            console.log("productEa :",ea)
             $.ajax({
                 type:"POST",
-                url : "./cartAdd",
+                url : "../cart/cartAdd",
                 traditional:true,
                 data :{
                     orderNum :orderNum,
                     productNum :$("#optionBtn").attr("data-productNum"),
-                    productEa : ea
+                    count : ea
         
                 },
                 success : function(data2){
                     
                 }
             })
+            
         })
+        
+        $(".rounded-pill").text($(".options").length);
     }
     
     

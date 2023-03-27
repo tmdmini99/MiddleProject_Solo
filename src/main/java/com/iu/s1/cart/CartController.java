@@ -1,9 +1,7 @@
 package com.iu.s1.cart;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,19 +9,32 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.iu.s1.member.MemberDTO;
+
 @Controller
 @RequestMapping(value = "/cart/*")
 public class CartController {
 	
 	
 	
-	//List<Cookie> ar;
+	@Autowired
+	private CartService cartService;
 	
 	
 	@PostMapping("cartAdd")
-	public ModelAndView setCartAdd(Long [] orderNum,ProductOrderDTO productOrderDTO) throws Exception{
+	public ModelAndView setCartAdd(Long [] orderNum,CartDTO cartDTO,HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		Cookie [] cookies = new Cookie[orderNum.length];
+		
+		
+		MemberDTO memberDTOs= new MemberDTO();
+		memberDTOs.setId("d");
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		cartDTO.setId(memberDTOs.getId());
+		
+		cartService.setCartAdd(cartDTO,orderNum);
+		
+		
+		mv.setViewName("../product/list");
 		
 		return mv;
 	}

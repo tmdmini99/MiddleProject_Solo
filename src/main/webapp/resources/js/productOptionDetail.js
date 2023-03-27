@@ -138,6 +138,7 @@ $(".nasss").on("change",".opti",function(){
             //ca.parent().next().remove(data2);
             data2 = data2+'<input class="form-control text-center me-3 productEa" type="num" value="1" style="max-width: 3rem"  name="productEa"/>'
             +'<button type="button" class="delc btn btn-outline-danger">옵션 삭제</button>'
+            
             ca.parent().append(data2);
         }
     })

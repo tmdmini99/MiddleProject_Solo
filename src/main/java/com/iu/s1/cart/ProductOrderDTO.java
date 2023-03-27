@@ -11,6 +11,33 @@ public class ProductOrderDTO {
 	private DATE orderDate;
 	private Long buyCheck;
 	private Long payMentCheck;
+	private Long optionNum;
+	private Long num;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public Long getNum() {
+		return num;
+	}
+	public void setNum(Long num) {
+		this.num = num;
+	}
+	public Long getOptionNum() {
+		return optionNum;
+	}
+	public void setOptionNum(Long optionNum) {
+		this.optionNum = optionNum;
+	}
 	public Long getOrderNum() {
 		return orderNum;
 	}
