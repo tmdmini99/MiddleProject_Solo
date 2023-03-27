@@ -82,10 +82,14 @@
  													 	옵션 선택 
 												</button>
                         <div class="d-flex">
-                            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
+                            <!-- <input class="form-control text-center me-3" id="productEa" type="num" value="1" style="max-width: 3rem"  name="productEa"/> -->
+                            <button class="btn btn-outline-dark flex-shrink-0 cartBtn" type="button">
+                                <i class="bi-cart-fill me-1"></i>
+                                장바구니 추가
+                            </button>
                             <button class="btn btn-outline-dark flex-shrink-0" type="button">
                                 <i class="bi-cart-fill me-1"></i>
-                                Add to cart
+                                장바구니 보기
                             </button>
                             <a href="./productOptionAdd?productNum=${dto.productNum}" class="btn btn-outline-dark flex-shrink-0">옵션 추가</a>
                         </div>
@@ -216,8 +220,8 @@
 
 
 
-
 <script src="/resources/js/productOptionDetail.js"></script>
+<script src="/resources/js/cart.js"></script>
 <c:import url="../template/common_js.jsp"></c:import>
 </body>
 </html>
