@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -89,11 +90,11 @@
                                 장바구니 추가
                             </button>
                             
-                            <form class="d-flex">
-                                <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                            <form action="../cart/cartList" method="get" class="d-flex" id="cartList">
+                                <button class="btn btn-outline-dark flex-shrink-0 cartListBtn" type="button">
                                     <i class="bi-cart-fill me-1"></i>
                                     장바구니 보기
-                                    <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                                    <span class="badge bg-dark text-white ms-1 rounded-pill">${fn:length(cartAdd)}</span>
                                 </button>
                                 
                             </form>

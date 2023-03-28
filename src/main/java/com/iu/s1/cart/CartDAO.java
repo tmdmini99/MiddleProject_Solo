@@ -15,7 +15,7 @@ public class CartDAO {
 	public int setCartAdd(CartDTO cartDTO) throws Exception{
 		return sqlSession.insert(NAMESPACE+"setCartAdd", cartDTO);
 	}
-	public Long getCartPrice(ProductOptionDTO productOptionDTO) throws Exception{
-		return sqlSession.selectOne(NAMESPACE+"getCartPrice", productOptionDTO);
+	public Long getCartPrice(CartDTO cartDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getCartPrice", cartDTO);
 	}
 }
