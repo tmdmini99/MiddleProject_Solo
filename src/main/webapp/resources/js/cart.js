@@ -73,7 +73,7 @@ $(".cartBtn").click(function(){
     
             },
             success : function(data2){
-                $(".rounded-pill").text($(".options").length);
+                $(".rounded-pill").text(data2);
             }
         })
         

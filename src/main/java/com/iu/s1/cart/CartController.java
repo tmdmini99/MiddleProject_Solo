@@ -57,8 +57,8 @@ public class CartController {
 		
 		//cartService.setCartAdd(cartDTO);
 		
-		
-		mv.setViewName("../product/list");
+		mv.addObject("dto", ar.size());
+		mv.setViewName("/common/sessionList");
 		
 		return mv;
 	}
@@ -82,6 +82,24 @@ public class CartController {
 			System.out.println("index : "+index);
 		}
 		ar.remove(index);
+		session.setAttribute("cartAdd", ar);
+		mv.setViewName("./common/cart");
+		return mv;
+	}
+	@PostMapping("cartDeletes")
+	//session 안에 CartDTO list가 들어가지는 불분명할때 나오는 경고를 지워주는 Annotation
+	@SuppressWarnings("unchecked")
+	public ModelAndView setCartDeletes(int [] index, HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		List<CartDTO> ar = (List<CartDTO>)session.getAttribute("cartAdd");
+		for(int i=0; i<ar.size();i++) {
+			System.out.println(ar.get(i).getCount());
+			System.out.println("index : "+index);
+		}
+		for(int i : index) {
+			ar.remove(i);
+		}
 		session.setAttribute("cartAdd", ar);
 		mv.setViewName("./common/cart");
 		return mv;
