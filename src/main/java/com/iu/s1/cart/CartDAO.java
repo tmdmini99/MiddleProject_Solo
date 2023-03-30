@@ -1,9 +1,12 @@
 package com.iu.s1.cart;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.iu.s1.member.MemberDTO;
 import com.iu.s1.product.ProductOptionDTO;
 @Repository
 public class CartDAO {
@@ -17,5 +20,19 @@ public class CartDAO {
 	}
 	public Long getCartPrice(CartDTO cartDTO) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getCartPrice", cartDTO);
+	}
+	public Long getCartCount(MemberDTO memberDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getCartCount",memberDTO);
+	}
+	
+	public List<CartDTO> getCartList(MemberDTO memberDTO) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getCartList", memberDTO);
+	}
+	//매개변수의 변수명을 Mapper의 변수명으로 그대로 적어야 받을수 있음
+	public int setCartDelete(Long num) throws Exception{
+		return sqlSession.delete(NAMESPACE+"setCartDelete", num);
+	}
+	public int setCartUpdate(CartDTO cartDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"setCartUpdate", cartDTO);
 	}
 }

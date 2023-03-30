@@ -11,4 +11,17 @@
   <select id="getCartPrice" parameterType="CartDTO" resultType="Long">
   	SELECT PRODUCTPRICE FROM PRODUCTOPTION WHERE OPTIONNUM=#{optionNum}
   </select>
+  <select id="getCartCount" parameterType="MemberDTO" resultType="Long">
+  	SELECT COUNT(NUM) FROM CART WHERE ID=#{id}
+  	</select>
+  	
+  	<select id="getCartList" parameterType="MemberDTO" resultType="CartDTO">
+  	SELECT * FROM CART WHERE ID=#{id}
+  </select>
+  <delete id="setCartDelete" parameterType="Long">
+  	DELETE CART WHERE NUM=#{num}
+  </delete>
+  <update id="setCartUpdate" parameterType="CartDTO">
+  	UPDATE CART SET COUNT=#{count} WHERE NUM=#{num}
+  </update>
   </mapper>

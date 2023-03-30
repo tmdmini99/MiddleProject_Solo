@@ -20,7 +20,30 @@
                     </form> -->
 
 
-
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="./productOptionDelete" method="post" id="delfrm">
+            <input type="hidden" name="productNum" value="${dto.productNum}" id="productNum">
+            <c:forEach items="${dto3}" var="dto4">
+          	<input type="checkbox" value="${dto4.optionNum}" name="optionNum">${dto4.optionValue}
+          </c:forEach>
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModal">Close</button>
+          <button type="button" class="btn btn-primary" id="deleteModal">옵션 삭제</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 
@@ -77,12 +100,13 @@
                         	</c:choose>
                         
                         </div>
-                        <div><p class="lead">ㅋ </div>
+                        <div><p class="lead">ㅋ ${dto2}</div>
                             <div class="nasss"></div>
                       	<button type="button" class="btn btn-primary"  id="optionBtn" data-productNum="${dto.productNum}" data-optionNum="${dto.productOptionDTOs[0].optionNum}">
  													 	옵션 선택 
 												</button>
-                        <div class="d-flex">
+                        
+                        <div class="d-flex row input-group">
                             <!-- <input class="form-control text-center me-3" id="productEa" type="num" value="1" style="max-width: 3rem"  name="productEa"/> -->
                             
                             <button class="btn btn-outline-dark flex-shrink-0 cartBtn" type="button">
@@ -94,13 +118,25 @@
                                 <button class="btn btn-outline-dark flex-shrink-0 cartListBtn" type="button">
                                     <i class="bi-cart-fill me-1"></i>
                                     장바구니 보기
-                                    <span class="badge bg-dark text-white ms-1 rounded-pill">${fn:length(cartAdd)}</span>
+                                    <span class="badge bg-dark text-white ms-1 rounded-pill">${dto2}</span>
                                 </button>
                                 
                             </form>
                             
+                            
                            
                             <a href="./productOptionAdd?productNum=${dto.productNum}" class="btn btn-outline-dark flex-shrink-0">옵션 추가</a>
+                            <a href="./productUpdate?productNum=${dto.productNum}" class="btn btn-outline-danger flex-shrink-0">상품 수정</a>
+                            <button  type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-danger">옵션 삭제</button>
+                        
+                            <form action="./productDelete" method="post">
+                                <input type="hidden" name="productNum" value="${dto.productNum}">
+                                <button class="btn btn-outline-danger flex-shrink-0 cartBtn" type="submit">
+                                    <i class="bi-cart-fill me-1"></i>
+                                    상품 삭제
+                                </button>
+                            </form>
+                            
                         </div>
                     </div>
                 </div>
@@ -230,7 +266,7 @@
 
 
 <script src="/resources/js/productOptionDetail.js"></script>
-<script src="/resources/js/cart.js"></script>
+<script src="/resources/js/cartAdd.js"></script>
 <c:import url="../template/common_js.jsp"></c:import>
 </body>
 </html>

@@ -112,5 +112,31 @@
   	<select id="getProductOptionList" parameterType="ProductOptionDTO" resultType="ProductOptionDTO">
   		SELECT * FROM PRODUCTOPTION WHERE PRODUCTNUM=#{productNum} AND REF=#{ref} AND DEPTH=#{depth}
   	</select>
-  	
+  	<select id="getCartCount" parameterType="MemberDTO" resultType="Long">
+  	SELECT COUNT(NUM) FROM CART WHERE ID=#{id}
+  	</select>
+  	<delete id="setProductFileDelete" parameterType="Long">
+  		DELETE PRODUCTFILES WHERE FILENUM=#{fileNum}
+  	</delete>
+  	<update id="setProductUpdate">
+  		UPDATE PRODUCT SET PRODUCTNAME=#{productName},DISCOUNT=#{discount}, DISCOUNTPERCENT=#{discountPercent},PRODUCTSALES=#{productSales} WHERE PRODUCTNUM=#{productNum}
+  	</update>
+  	<delete id="setProductDelete">
+  		DELETE PRODUCT WHERE PRODUCTNUM=#{productNum}
+  	</delete>
+  	<delete id="setProductOptionDelete" parameterType="Long">
+  		DELETE PRODUCTOPTION WHERE OPTIONNUM=#{optionNum}
+  	</delete>
+  	<delete id="setCategoryDelete" parameterType="Long">
+  		DELETE PRODUCTCATEGORY WHERE PRODUCTNUM=#{productNum}
+  	</delete>
+  	<select id="getProductOptionListDelete" parameterType="ProductDTO" resultType="ProductOptionDTO">
+  		SELECT * FROM PRODUCTOPTION WHERE PRODUCTNUM=#{productNum} AND REF=0 AND DEPTH=0
+  	</select>
+  	<delete id="setProductOptionDeletes" parameterType="Long">
+  		DELETE PRODUCTOPTION WHERE PRODUCTNUM=#{productNum}
+  	</delete>
+  	<select id="setProdutOptionRef" parameterType="Long" resultType="Long">
+  		SELECT OPTIONNUM FROM PRODUCTOPTION WHERE REF=#{optionNum}
+  	</select>
   </mapper>

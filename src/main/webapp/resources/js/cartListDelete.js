@@ -3,7 +3,7 @@ $(document).on('click',".cartDeleteBtn",function(){
         type:"POST",
         url : "./cartDelete",
         data :{
-            index : $(this).attr("data-index")
+            num : $(this).attr("data-num")
         },
         success : function(data2){
             $(".cartLists").html(data2);
@@ -24,13 +24,39 @@ $(document).on('click',".cartDeleteBtns",function(){
         url : "./cartDeletes",
         traditional:true,
         data :{
-            index : cartDeleteIndex
+            nums : cartDeleteIndex
         },
         success : function(data){
             $(".cartLists").html(data);
         }
     })
 })
+
+$(document).on("click",".cartUpdate",function(){
+    
+    let a= '<input type="text" class="count" value="'+ $(this).attr("data-count")+'">'
+    let b='<button type="button" data-count="'+$(this).attr("data-count")+'" data-num="'+$(this).attr("data-num")+'" class="btn btn-outline-info cartUpdateEnd">변경</button>';
+    $(this).parent().prev().prev().prev().html(a);
+    $(this).parent().html(b);
+})
+$(document).on("click",".cartUpdateEnd",function(){
+    console.log("count",$(".count").val());
+    console.log("num",$(this).attr("data-num"));
+    $.ajax({
+        type:"POST",
+        url : "./cartUpdate",
+        data :{
+            count : $(".count").val(),
+            num : $(this).attr("data-num")
+        },
+        success : function(data){
+            $(".cartLists").html(data);
+        }
+    })
+})
+
+
+
 
 // let checkAll=document.getElementById("checkAll");
 // let checka=document.getElementsByClassName("checkd");

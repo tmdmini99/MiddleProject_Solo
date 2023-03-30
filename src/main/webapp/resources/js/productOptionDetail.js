@@ -166,3 +166,10 @@ $(".nasss").on("click",".delc",function(){
 //     console.log("value :",$(this).val());
 // })
 
+$("#deleteModal").click(function(){
+   
+ console.log($("#productNum").val());
+    $("#delfrm").submit();
+    $("#closeModal").click();
+    
+})

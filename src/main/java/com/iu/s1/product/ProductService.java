@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.iu.s1.member.MemberDTO;
 import com.iu.s1.util.FileManager;
 import com.iu.s1.util.Pager;
 
@@ -59,8 +60,7 @@ public class ProductService {
 	}
 	public int setProductOptionAdd(ProductOptionDTO[] productOptionDTOs,ProductOptionDTO productOptionDTO1)throws Exception{
 		int result = 0;
-		Long j=0L;
-		Long k=0L;
+		
 		List<Long> h = new ArrayList<Long>();
 		for(ProductOptionDTO productOptionDTO : productOptionDTOs) {
 			ProductOptionDTO optionDTO=new ProductOptionDTO();
@@ -146,5 +146,67 @@ public class ProductService {
 	}
 	public List<ProductOptionDTO> getProductOptionList(ProductOptionDTO productOptionDTO) throws Exception{
 		return productDAO.getProductOptionList(productOptionDTO);
+	}
+	public Long getCartCount(MemberDTO memberDTO) throws Exception{
+		return productDAO.getCartCount(memberDTO);
+	}
+	public int setProductFileDelete(Long fileNum) throws Exception{
+		
+		return productDAO.setProductFileDelete(fileNum);
+	}
+	public int setProductUpdate(ProductDTO productDTO,MultipartFile [] files,HttpSession session,Long [] categoryNums) throws Exception{
+		int result =productDAO.setProductUpdate(productDTO);
+		if(result>0) {
+			productDAO.setCategoryDelete(productDTO.getProductNum());
+			for(Long categoryNum : categoryNums) {
+				CategoryDTO categoryDTO = new CategoryDTO();
+				categoryDTO.setCategoryNum(categoryNum);
+				categoryDTO.setProductNum(productDTO.getProductNum());
+				result = productDAO.setProductCategoryAdd(categoryDTO);
+			}
+			
+			
+			String realPath = session.getServletContext().getRealPath("/resources/upload/product/");
+			for(MultipartFile file : files) {
+				if(file.isEmpty()) {
+					continue;
+				}
+				
+				String name = fileManager.fileSave(realPath, file);
+				ProductFileDTO productFileDTO = new ProductFileDTO();
+				productFileDTO.setOriName(file.getOriginalFilename());
+				productFileDTO.setFileName(name);
+				productFileDTO.setProductNum(productDTO.getProductNum());
+				result = productDAO.setProductFileAdd(productFileDTO);
+				
+			}
+		}
+		
+		return result;
+	}
+	public int setProductDelete(Long productNum) throws Exception{
+		productDAO.setCategoryDelete(productNum);
+		productDAO.setProductOptionDeletes(productNum);
+		return productDAO.setProductDelete(productNum);
+	}
+	public int setProductOptionDelete(Long []optionNums) throws Exception{
+		int result=0;
+		for(Long optionNum : optionNums) {
+			result=productDAO.setProductOptionDelete(optionNum);
+			List<Long> ar = productDAO.setProdutOptionRef(optionNum);
+			for(int i=0; i<ar.size();i++) {
+				optionNum=ar.get(i);
+				result=productDAO.setProductOptionDelete(optionNum);
+				ar = productDAO.setProdutOptionRef(optionNum);
+				for(int j=0; j<ar.size();j++) {
+					optionNum=ar.get(j);
+					result=productDAO.setProductOptionDelete(optionNum);
+				}
+			}
+		}
+		return result;
+	}
+	public List<ProductOptionDTO> getProductOptionListDelete(ProductDTO productDTO) throws Exception{
+		return productDAO.getProductOptionListDelete(productDTO);
 	}
 }

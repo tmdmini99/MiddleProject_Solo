@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.iu.s1.member.MemberDTO;
 import com.iu.s1.util.Pager;
 
 import oracle.net.aso.j;
@@ -41,11 +42,21 @@ public class ProductController {
 		return mv;
 	}
 	@GetMapping("productDetail")
-	public ModelAndView getProductDetail(ProductDTO productDTO) throws Exception{
+	public ModelAndView getProductDetail(ProductDTO productDTO,HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		productDTO=productService.getProductDetail(productDTO);
-		
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		MemberDTO memberDTO2 = new MemberDTO();
+		memberDTO2.setId("d");
+		Long a = productService.getCartCount(memberDTO2);
+		System.out.println("a : "+a);
+		if( a == null) {
+			a = 0L;
+		}
+		List<ProductOptionDTO> ar = productService.getProductOptionListDelete(productDTO);
 		mv.addObject("dto", productDTO);
+		mv.addObject("dto2", a);
+		mv.addObject("dto3", ar);
 		mv.setViewName("./product/productDetail");
 		return mv;
 	}
@@ -105,4 +116,53 @@ public class ProductController {
 		mv.setViewName("common/productOptionList");
 		return mv;
 	}
+	@PostMapping("productDelete")
+	public ModelAndView setProductDelete(Long productNum) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		productService.setProductDelete(productNum);
+		mv.setViewName("redirect:./productList");
+		return mv;
+	}
+	@GetMapping("productUpdate")
+	public ModelAndView setProductUpdate(ProductDTO productDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		productDTO=productService.getProductDetail(productDTO);
+	
+		mv.addObject("dto", productDTO);
+		mv.setViewName("./product/productUpdate");
+		return mv;
+	}
+	//beforeCategoryNums는 예전 categoryNum
+	@PostMapping("productUpdate")
+	public ModelAndView setProductUpdate(ProductDTO productDTO,MultipartFile [] files,HttpSession session,Long [] categoryNum) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int a = productService.setProductUpdate(productDTO, files, session,categoryNum);
+		
+		mv.setViewName("redirect:./productList");
+		return mv;
+	}
+	@GetMapping("productOptionDelete")
+	public ModelAndView setProductOptionDelete(ProductDTO productDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		return mv;
+	}
+	@PostMapping("productOptionDelete")
+	public ModelAndView setProductOptionDelete(Long [] optionNum, Long productNum) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("productNum :"+productNum);
+		productService.setProductOptionDelete(optionNum);
+		mv.setViewName("redirect:./productDetail?productNum="+productNum);
+		return mv;
+	}
+	@PostMapping("productFileDelete")
+	public ModelAndView setProductFileDelete(Long fileNum) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int a = productService.setProductFileDelete(fileNum);
+		
+		mv.addObject("dto", a);
+		mv.setViewName("/common/ajaxResult");
+		return mv;
+	}
+	
 }

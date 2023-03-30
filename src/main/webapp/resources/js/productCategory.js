@@ -84,7 +84,7 @@ $("#fileList").on("click",".del",function(){
                 //ajax 안에 있는 $(this)는 ajax 객체 자기 자신
                 $.ajax({
                     type:'POST',
-                    url:'./boardFileDelete',
+                    url:'./productFileDelete',
                     data:{
                         fileNum: fileNum
                     },
