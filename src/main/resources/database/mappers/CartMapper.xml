@@ -24,4 +24,10 @@
   <update id="setCartUpdate" parameterType="CartDTO">
   	UPDATE CART SET COUNT=#{count} WHERE NUM=#{num}
   </update>
+  <select id="setCartOptionName" parameterType="Long" resultType="String">
+  		SELECT OPTIONVALUE FROM PRODUCTOPTION WHERE OPTIONNUM=#{optionNum}
+  	</select>
+  	<select id="setCartOptionRef" parameterType="Long" resultType="Long">
+  		SELECT REF FROM PRODUCTOPTION WHERE OPTIONNUM=#{optionNum}
+  	</select>
   </mapper>

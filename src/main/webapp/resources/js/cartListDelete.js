@@ -113,19 +113,19 @@ $(document).on('click',".cartBuyBtns",function(){
     let cartBuyIndex=[];
     $(".checkd").each(function(){
         if($(this).prop("checked")){
-            console.log($(this).val());
-            cartBuyIndex.push($(this).val());
+            console.log($(this).attr("data-optionNum"));
+            cartBuyIndex.push($(this).attr("data-optionNum"));
         }
     })
-    $.ajax({
-        type:"POST",
-        url : "./cartBuy",
-        traditional:true,
-        data :{
-            nums : cartBuyIndex
-        },
-        success : function(data){
-            $(".cartLists").html(data);
-        }
-    })
+    // $.ajax({
+    //     type:"POST",
+    //     url : "./cartBuy",
+    //     traditional:true,
+    //     data :{
+    //         optionNums : cartBuyIndex
+    //     },
+    //     success : function(data){
+    //         $(".cartLists").html(data);
+    //     }
+    // })
 })

@@ -35,4 +35,10 @@ public class CartDAO {
 	public int setCartUpdate(CartDTO cartDTO) throws Exception{
 		return sqlSession.update(NAMESPACE+"setCartUpdate", cartDTO);
 	}
+	public String setCartOptionName(Long optionNum) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"setCartOptionName", optionNum);
+	}
+	public Long setCartOptionRef(Long optionNum) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"setCartOptionRef", optionNum);
+	}
 }

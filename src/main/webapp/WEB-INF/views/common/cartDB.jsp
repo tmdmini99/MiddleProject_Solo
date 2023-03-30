@@ -18,7 +18,7 @@
     <tbody>
         <c:forEach items="${cartAdd}" var="dto" varStatus="status">
 <tr>
-    <td><input type="checkbox" class="checkd" value="${dto.num}"></td>
+    <td><input type="checkbox" class="checkd" value="${dto.num}" data-optionNum="${dto.optionNum}"></td>
     
 <td>${dto.optionNum}</td>
 <td>${dto.price*dto.count}</td>

@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.iu.s1.member.MemberDTO;
-import com.iu.s1.product.ProductOptionDTO;
+import com.iu.s1.product.ProductDAO;
 @Service
 public class CartService {
 
 	@Autowired
 	private CartDAO cartDAO;
+	@Autowired
+	private ProductDAO productDAO;
 	
 	public int setCartAdd(CartDTO cartDTO,Long [] orderNum,Long [] count) throws Exception{
 		
@@ -39,7 +41,25 @@ public class CartService {
 		return cartDAO.getCartCount(memberDTO);
 	}
 	public List<CartDTO> getCartList(MemberDTO memberDTO) throws Exception{
-		return cartDAO.getCartList(memberDTO);
+		List<CartDTO> arr = cartDAO.getCartList(memberDTO);
+		int result=0;
+		for(int i =0; i<arr.size(); i++) {
+			System.out.println("optionNum :"+arr.get(i).getOptionNum());
+			
+			Long num = cartDAO.setCartOptionRef(arr.get(i).getOptionNum());
+			System.out.println("optionNum2 :"+num);
+			String name=cartDAO.setCartOptionName(arr.get(i).getOptionNum());
+			System.out.println("name1 :"+name);
+			name=cartDAO.setCartOptionName(num)+"-"+name;
+			num=cartDAO.setCartOptionRef(num);
+			System.out.println("name2 :"+name);
+			name=cartDAO.setCartOptionName(num)+"-"+name;
+			num=cartDAO.setCartOptionRef(num);
+			System.out.println("name3 :"+name);
+			arr.get(i).setOptionName(name);
+		}
+		
+		return arr;
 	}
 	public int setCartDelete(Long num) throws Exception{
 		return cartDAO.setCartDelete(num);

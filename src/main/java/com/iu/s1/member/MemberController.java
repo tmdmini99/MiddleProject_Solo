@@ -108,7 +108,7 @@ public class MemberController {
 		MemberDTO memberDTO=new MemberDTO();
 		memberDTO=(MemberDTO)session.getAttribute("member");
 		
-		//memberDTO=memberService.getMemberDetail(memberDTO);
+		memberDTO=memberService.getMemberDetail(memberDTO);
 		
 		mv.addObject("dto", memberDTO);
 		mv.setViewName("./member/memberDetail");

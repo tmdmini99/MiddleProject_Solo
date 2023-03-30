@@ -9,8 +9,19 @@ public class CartDTO {
 	
 	private Long price;
 	
+	private String optionName;
 	
 	
+	
+	
+	
+	
+	public String getOptionName() {
+		return optionName;
+	}
+	public void setOptionName(String optionName) {
+		this.optionName = optionName;
+	}
 	public Long getOptionNum() {
 		return optionNum;
 	}
