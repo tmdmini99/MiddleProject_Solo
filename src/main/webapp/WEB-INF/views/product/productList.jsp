@@ -11,7 +11,7 @@
 <body>
 
 <c:import url="../template/header.jsp"></c:import>
-<div class="container pt-5 pb-5">
+<!-- <div class="container pt-5 pb-5">
         <div class="row">
             
             <c:forEach items="${dto}" var="list">
@@ -26,7 +26,52 @@
 	            </div>
             </c:forEach>
         </div>
-    </div>
+    </div> -->
+	<section class="py-5">
+		<div class="container px-4 px-lg-5 mt-5">
+			<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+	<c:forEach items="${dto}" var="list">
+	<div class="col mb-5">
+		
+		<div class="card h-100" data-num=${list.productNum}>
+			<!-- Sale badge-->
+			<c:if test="${not empty list.productOptionDTOs}">
+			<div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+			</c:if>
+			<!-- Product image-->
+			<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+			<!-- Product details-->
+			<div class="card-body p-4">
+				<div class="text-center">
+					<!-- Product name-->
+					<h5 class="fw-bolder">${list.productName}</h5>
+					<!-- Product reviews-->
+					<div class="d-flex justify-content-center small text-warning mb-2">
+						<div class="bi-star-fill"></div>
+						<div class="bi-star-fill"></div>
+						<div class="bi-star-fill"></div>
+						<div class="bi-star-fill"></div>
+						<div class="bi-star-fill"></div>
+					</div>
+					<!-- Product price-->
+					<c:if test="${not empty list.productOptionDTOs}">
+					<span class="text-muted text-decoration-line-through">$${list.productOptionDTOs[0].productPrice}</span>
+					</c:if>
+					$${list.discount}
+				</div>
+			</div>
+			<!-- Product actions-->
+			<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+				<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+			</div>
+		</div>
+	
+	</div>
+</c:forEach>
+</div>
+</div>
+
+</div>
     <!-- paging -->
 		<div class="row">
 				<nav aria-label="Page navigation example">
@@ -67,9 +112,8 @@
 				<div class="col-auto">
 					<label for="kind" class="visually-hidden">Kind</label>
 					<select class="form-select" name="kind" id="kind" aria-label="Default select example">
-						<option value="title" ${pager.kind eq 'title' ? 'selected' : '' }>제목</option>
-						<option value="contents" ${pager.kind eq 'contents' ? 'selected' : '' }>내용</option>
-						<option value="wrtier" ${pager.kind eq 'writer' ? 'selected' : '' }>작성자</option>
+						
+						<option value="contents" ${pager.kind eq 'contents' ? 'selected' : '' }>상품이름</option>
 					</select>
 				</div>
 				<div class="col-auto">
@@ -308,6 +352,7 @@
     	보임
     </c:if>
     <a href="./productAdd">상품 추가</a>
+    <script src="/resources/js/paging.js"></script>
 <script src="/resources/js/productList.js"></script>
 <c:import url="../template/common_js.jsp"></c:import>
 </body>

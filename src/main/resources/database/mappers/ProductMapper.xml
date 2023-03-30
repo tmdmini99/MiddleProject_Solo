@@ -6,21 +6,13 @@
   <mapper namespace="com.iu.s1.product.ProductDAO">
   	
   	<sql id="Condition">
-  	<if test="kind == 'title'">
-  		<trim prefix="where">
-  			TITLE LIKE '%'||#{search}||'%'
-  		</trim>
-  	</if>
+  	
   	<if test="kind == 'contents'">
   		<trim prefix="where">
-  			CONTENTS LIKE '%'||#{search}||'%'
+  			PRODUCTNAME LIKE '%'||#{search}||'%'
   		</trim>
   	</if>
-  	<if test="kind =='writer'">
-  		<trim prefix="where">
-  			WRITER LIKE '%'||#{search}||'%'
-  		</trim>
-  	</if>
+  	
   </sql>
   
   <select id="getTotalCount" parameterType="Pager" resultType="Long">
@@ -29,8 +21,13 @@
   </select>
   	
   	
-  	<select id="getProductList" resultType="ProductDTO">
-  		SELECT * FROM PRODUCT
+  	<select id="getProductList" parameterType="Pager" resultType="ProductDTO">
+  		SELECT * FROM
+  		(SELECT ROWNUM R,P.* FROM
+  		(SELECT * FROM PRODUCT
+  		<include refid="Condition"></include>
+  		ORDER BY PRODUCTNUM ASC) P)
+  		WHERE R BETWEEN #{startRow} AND #{lastRow}
   	</select>
   	<select id="getProductDetail" resultMap="productDetails" parameterType="ProductDTO">
   		SELECT * FROM PRODUCT 

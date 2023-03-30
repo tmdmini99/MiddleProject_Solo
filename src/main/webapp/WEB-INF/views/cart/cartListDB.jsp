@@ -41,7 +41,8 @@
 			</tbody>
 		</table>
 		<button type="button" data-index="${status.index}" class="btn btn-outline-danger cartDeleteBtns">선택항목 삭제</button>
-	
+		<!-- 구매도  cartListDelete.js에 넣음 -->
+		<button type="button" data-index="${status.index}" class="btn btn-outline-danger cartBuyBtns">선택항목 구입</button>
 	</div>
 	<script src="/resources/js/cartListDelete.js"></script>
 <c:import url="../template/common_js.jsp"></c:import>

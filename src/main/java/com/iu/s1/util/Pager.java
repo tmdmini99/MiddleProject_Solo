@@ -58,16 +58,28 @@ public class Pager {
 		
 		//1.전체 row의 갯수를 구하기
 		//2.총 page의 갯수
-		
+		this.totalPage = totalCount/this.getPerPage();
+		if(totalCount%this.getPerPage()!=0) {
+			this.totalPage++;
+		}
+		if(this.getPage() >this.totalPage) {
+			this.setPage(this.totalPage);
+		}
 		//3.한 블럭(페이지 수)에 출력할 번호의 갯수
 		
 		
 		//4. 총 블럭의 수
-		
+		Long totalBlock=this.totalPage/this.getPerBlock();
+		if(this.totalPage%this.getPerBlock() !=0) {
+			totalBlock++;
+		}
 		//5. page 번호로 현재 블럭 번호 구하기
 		// page1-5번이면 curBlock은 1이 되어야함
 		// page 6-10 curBlock 2
-		
+		Long curBlock=this.getPage()/this.getPerBlock();
+		if(this.getPage()%this.getPerBlock() !=0) {
+			curBlock++;
+		}
 		
 		//6.curBlock의 시작번호와 끝 번호를 계산
 		/* curBlock	startNum	lastNum
@@ -77,62 +89,52 @@ public class Pager {
 		 * 
 		 * 
 		 * */
+		this.startNum=(curBlock-1)*this.getPerBlock()+1;
+		this.lastNum=curBlock*this.getPerBlock();
 		
-		//1.전체 row의 갯수를 구하기
-				//2.총 page의 갯수
-				this.totalPage = totalCount/this.getPerPage();
-				if(totalCount%this.getPerPage()!=0) {
-					this.totalPage++;
-				}
-				if(this.getPage() >this.totalPage) {
-					this.setPage(this.totalPage);
-				}
-				//3.한 블럭(페이지 수)에 출력할 번호의 갯수
-				
-				
-				//4. 총 블럭의 수
-				Long totalBlock=this.totalPage/this.getPerBlock();
-				if(this.totalPage%this.getPerBlock() !=0) {
-					totalBlock++;
-				}
-				//5. page 번호로 현재 블럭 번호 구하기
-				// page1-5번이면 curBlock은 1이 되어야함
-				// page 6-10 curBlock 2
-				Long curBlock=this.getPage()/this.getPerBlock();
-				if(this.getPage()%this.getPerBlock() !=0) {
-					curBlock++;
-				}
-				
-				//6.curBlock의 시작번호와 끝 번호를 계산
-				/* curBlock	startNum	lastNum
-				 * 1		1			5
-				 * 2		6			10
-				 * 3		11			15
-				 * 
-				 * 
-				 * */
-				this.startNum=(curBlock-1)*this.getPerBlock()+1;
-				this.lastNum=curBlock*this.getPerBlock();
-				
-				this.after=true;
-				if(curBlock==totalBlock){
-					lastNum=this.totalPage;
-					this.after=false;
-				}
-				this.before=false;
-				if(curBlock==1) {
-					this.before=true;
-				}
-				
-				
-				
+		this.after=true;
+		if(curBlock==totalBlock){
+			lastNum=this.totalPage;
+			this.after=false;
+		}
+		this.before=false;
+		if(curBlock==1) {
+			this.before=true;
+		}
+		
+		
+		
 		
 	}
 	
 	
+	
+	
+	
+	
+//	public Long getTotalCount() {
+//		return totalCount;
+//	}
+//
+//
+//
+//	public void setTotalCount(Long totalCount) {
+//		this.totalCount = totalCount;
+//	}
 
 	
+	
+	
+	
+	
 
+	public Long getPerBlock() {
+		
+		if(this.perBlock == null ||this.perBlock <1) {
+			this.perBlock=5L;
+		}
+		return perBlock;
+	}
 	public Long getProductNum() {
 		return productNum;
 	}
@@ -140,15 +142,6 @@ public class Pager {
 	public void setProductNum(Long productNum) {
 		this.productNum = productNum;
 	}
-
-public Long getPerBlock() {
-		
-		if(this.perBlock == null ||this.perBlock <1) {
-			this.perBlock=5L;
-		}
-		return perBlock;
-	}
-
 
 	public String getKind() {
 		return kind;
@@ -216,7 +209,7 @@ public Long getPerBlock() {
 	public Long getPerPage() {
 		
 		if(this.perPage==null || this.perPage==0) {
-			this.perPage=10L;
+			this.perPage=8L;
 		}
 		return perPage;
 	}
@@ -244,5 +237,6 @@ public Long getPerBlock() {
 	public void setLastRow(Long lastRow) {
 		this.lastRow = lastRow;
 	}
+	
 	
 }

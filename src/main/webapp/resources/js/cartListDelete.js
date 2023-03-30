@@ -108,3 +108,24 @@ $(document).on("click",".checkd",function(){
     })
     $("#checkAll").prop("checked",result);
 })
+
+$(document).on('click',".cartBuyBtns",function(){
+    let cartBuyIndex=[];
+    $(".checkd").each(function(){
+        if($(this).prop("checked")){
+            console.log($(this).val());
+            cartBuyIndex.push($(this).val());
+        }
+    })
+    $.ajax({
+        type:"POST",
+        url : "./cartBuy",
+        traditional:true,
+        data :{
+            nums : cartBuyIndex
+        },
+        success : function(data){
+            $(".cartLists").html(data);
+        }
+    })
+})

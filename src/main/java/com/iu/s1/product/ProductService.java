@@ -23,9 +23,10 @@ public class ProductService {
 	private FileManager fileManager;
 	
 	public List<ProductDTO> getProductList(Pager pager) throws Exception{
-		pager.makeRow();
+		
 		pager.makeNum(productDAO.getTotalCount(pager));
-		return productDAO.getProductList();
+		pager.makeRow();
+		return productDAO.getProductList(pager);
 	}
 	public ProductDTO getProductDetail(ProductDTO productDTO) throws Exception{
 		

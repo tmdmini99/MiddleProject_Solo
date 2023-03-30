@@ -15,8 +15,8 @@ public class ProductDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="com.iu.s1.product.ProductDAO.";
 	
-	public List<ProductDTO> getProductList() throws Exception{
-		return sqlSession.selectList(NAMESPACE+"getProductList");
+	public List<ProductDTO> getProductList(Pager pager) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getProductList",pager);
 	}
 	
 	public ProductDTO getProductDetail(ProductDTO productDTO) throws Exception{
