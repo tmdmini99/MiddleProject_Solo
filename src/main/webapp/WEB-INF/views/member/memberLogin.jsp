@@ -7,13 +7,13 @@
 <meta charset="UTF-8">
 <title>로그인</title>
 <c:import url="../template/common_css.jsp"></c:import>
-<c:import url="../template/real_header.jsp"></c:import>
+
 </head>
 <body>
 
 	<c:import url="../template/header.jsp"></c:import>
 
-	<%-- <form action="./memberLogin" method="post">
+	 <form action="./memberLogin" method="post">
 		<img class="mb-4" src="/resources/imgs/logo.png" alt="" width="72"
 			height="57">
 		<h1 class="h3 mb-3 fw-normal">로그인 화면</h1>
@@ -39,7 +39,7 @@
 			class="w-100 btn btn-lg btn-info" href="./memberPwFind">PW찾기</a>
 
 		<p class="mt-5 mb-3 text-muted">© 2023-03-13~2023-04-14</p>
-	</form> --%>
+	</form> 
 	<div id="page-content" class="page-wrapper section">
 	<div class="login-section mb-80">
 		<div class="container-fluid">
@@ -66,6 +66,6 @@
 	</div>
 </div>
 	<c:import url="../template/common_js.jsp"></c:import>
-	<c:import url="../template/real_footer.jsp"></c:import>
+	
 </body>
 </html>

@@ -102,6 +102,19 @@ public class CartController {
 		return mv;
 	}
 	
+	@GetMapping("cartBuy")
+	public ModelAndView setCartBuy(Long [] nums,Long [] optinNums,HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		MemberDTO memberDTOs= new MemberDTO();
+		memberDTOs.setId("d");
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		List<CartDTO> ar = cartService.getCartList(memberDTOs);
+		
+		
+		return mv;
+	}
+	
 	@PostMapping("cartBuy")
 	public ModelAndView setCartBuy(Long [] nums, HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -114,6 +127,7 @@ public class CartController {
 		
 		return mv;
 	}
+	
 	
 	
 	//------------------------------------------------------------------------------------------

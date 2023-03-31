@@ -1,4 +1,4 @@
 $(".card").click(function(e){
     console.log(e.target.parentNode.parentNode);
-    location.href="./productDetail?productNum="+e.target.parentNode.parentNode.getAttribute("data-num");
+    location.href="./productDetail?productNum="+$(this).attr("data-num");
 })

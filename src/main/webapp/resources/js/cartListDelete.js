@@ -111,18 +111,22 @@ $(document).on("click",".checkd",function(){
 
 $(document).on('click',".cartBuyBtns",function(){
     let cartBuyIndex=[];
+    let cartIndex=[];
     $(".checkd").each(function(){
         if($(this).prop("checked")){
             console.log($(this).attr("data-optionNum"));
             cartBuyIndex.push($(this).attr("data-optionNum"));
+            cartIndex.push($(this).attr("data-num"));
         }
     })
+    location.href="./cartBuy?optionNums="+cartBuyIndex+"&nums="+cartIndex
     // $.ajax({
-    //     type:"POST",
+    //     type:"GET",
     //     url : "./cartBuy",
     //     traditional:true,
     //     data :{
-    //         optionNums : cartBuyIndex
+    //         optionNums : cartBuyIndex,
+    //         nums : cartIndex
     //     },
     //     success : function(data){
     //         $(".cartLists").html(data);
