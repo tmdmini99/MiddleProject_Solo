@@ -24,10 +24,25 @@
   <update id="setCartUpdate" parameterType="CartDTO">
   	UPDATE CART SET COUNT=#{count} WHERE NUM=#{num}
   </update>
-  <select id="setCartOptionName" parameterType="Long" resultType="String">
+  	<select id="setCartOptionName" parameterType="Long" resultType="String">
   		SELECT OPTIONVALUE FROM PRODUCTOPTION WHERE OPTIONNUM=#{optionNum}
   	</select>
   	<select id="setCartOptionRef" parameterType="Long" resultType="Long">
   		SELECT REF FROM PRODUCTOPTION WHERE OPTIONNUM=#{optionNum}
   	</select>
+  	<select id="getCartOrderList" parameterType="Long" resultType="CartDTO">
+  	SELECT * FROM CART WHERE NUM=#{num}
+  </select>
+  <insert id="setProductOrderAdd" parameterType="ProductOrderDTO">
+  INSERT INTO PRODUCTORDER VALUES(PRODUCT_ORDER_SEQ.NEXTVAL,#{productNum},#{id},#{totalPrice},#{productEa},SYSDATE,#{buyCheck},#{payMentCheck},#{optionNum})
+  </insert>
+  
+  <update id="setproductOptionStock" parameterType="ProductOptionDTO">
+  UPDATE PRODUCTOPTION SET PRODUCTSTOCK=#{productStock} WHERE OPTIONNUM=#{optionNum}
+  </update>
+  <select id="setProductOption" parameterType="Long" resultType="ProductOptionDTO">
+  	SELECT * FROM PRODUCTOPTION WHERE OPTIONNUM=#{optionNum}
+  </select>
+  
+  
   </mapper>

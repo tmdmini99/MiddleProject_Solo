@@ -102,29 +102,40 @@ public class CartController {
 		return mv;
 	}
 	
-	@GetMapping("cartBuy")
+	@GetMapping("cartOrder")
 	public ModelAndView setCartBuy(Long [] nums,Long [] optinNums,HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
 		MemberDTO memberDTOs= new MemberDTO();
 		memberDTOs.setId("d");
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		List<CartDTO> ar = cartService.getCartList(memberDTOs);
+		
+		List<CartDTO> ar = cartService.getCartOrderList(nums);
+		System.out.println(ar.get(0).getCount());
+		Long total = 0L;
+		for(int i=0;i<ar.size();i++) {
+			total +=(ar.get(i).getCount()*ar.get(i).getPrice());
+		}
+		mv.addObject("total", total);
+		mv.addObject("list", ar);
+		mv.setViewName("./cart/cartOrder");
 		
 		
 		return mv;
 	}
 	
-	@PostMapping("cartBuy")
+	@PostMapping("cartOrder")
 	public ModelAndView setCartBuy(Long [] nums, HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
 		MemberDTO memberDTOs= new MemberDTO();
 		memberDTOs.setId("d");
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		List<CartDTO> ar = cartService.getCartList(memberDTOs);
 		
+		 int result=cartService.setProductOrderAdd(nums);
 		
+		mv.addObject("dto", result);
+		mv.setViewName("common/sessionList");
 		return mv;
 	}
 	

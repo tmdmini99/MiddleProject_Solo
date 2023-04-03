@@ -210,4 +210,7 @@ public class ProductService {
 	public List<ProductOptionDTO> getProductOptionListDelete(ProductDTO productDTO) throws Exception{
 		return productDAO.getProductOptionListDelete(productDTO);
 	}
+	public int setProductOptionDeletes(Long productNum) throws Exception{
+		return productDAO.setProductOptionDeletes(productNum);
+	}
 }

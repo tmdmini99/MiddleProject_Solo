@@ -54,10 +54,9 @@
 						<div class="bi-star-fill"></div>
 					</div>
 					<!-- Product price-->
-					<c:if test="${not empty list.productOptionDTOs}">
+					
 					<span class="text-muted text-decoration-line-through">$${list.productOptionDTOs[0].productPrice}</span>
-					</c:if>
-					$${list.discount}
+					
 				</div>
 			</div>
 			<!-- Product actions-->

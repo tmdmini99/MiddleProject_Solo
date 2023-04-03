@@ -11,11 +11,14 @@
  		<typeAlias type="java.lang.Long" alias="Long"/>
  		<typeAlias type="com.iu.s1.product.ProductDTO" alias="ProductDTO"/>
  		<typeAlias type="com.iu.s1.product.CategoryDTO" alias="CategoryDTO"/>
+ 		
+ 		
  		<typeAlias type="com.iu.s1.product.ProductOptionDTO" alias="ProductOptionDTO"/>
  		<typeAlias type="com.iu.s1.product.ProductFileDTO" alias="ProductFileDTO"/>
  		<typeAlias type="com.iu.s1.product.ProductFileDTO" alias="ProductFileDTO"/>
  		<typeAlias type="com.iu.s1.util.Pager" alias="Pager"/>	
  		<typeAlias type="com.iu.s1.cart.CartDTO" alias="CartDTO"/>
+ 		<typeAlias type="com.iu.s1.cart.ProductOrderDTO" alias="ProductOrderDTO"/>
   </typeAliases>
   
   

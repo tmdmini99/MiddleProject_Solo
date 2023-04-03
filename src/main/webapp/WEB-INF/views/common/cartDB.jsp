@@ -34,4 +34,6 @@
     </tbody>
 </table>
 <button type="button" data-index="${status.index}" class="btn btn-outline-danger cartDeleteBtns">선택항목 삭제</button>
-<button type="button" data-index="${status.index}" class="btn btn-outline-dark cartBuyBtns">선택항목 구입</button>
+<form>
+    <button type="button" data-index="${status.index}" class="btn btn-outline-dark cartBuyBtns">선택항목 구입</button>
+</form>

@@ -78,4 +78,5 @@ public class ProductDAO {
 	public List<Long> setProdutOptionRef(Long optionNum) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"setProdutOptionRef", optionNum);
 	}
+	
  }

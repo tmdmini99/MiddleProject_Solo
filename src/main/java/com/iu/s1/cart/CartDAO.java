@@ -41,4 +41,18 @@ public class CartDAO {
 	public Long setCartOptionRef(Long optionNum) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"setCartOptionRef", optionNum);
 	}
+	
+	public CartDTO getCartOrderList(Long num) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getCartOrderList", num);
+	}
+	public int setProductOrderAdd(ProductOrderDTO productOrderDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setProductOrderAdd", productOrderDTO);
+	}
+	public int setproductOptionStock(ProductOptionDTO productOptionDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"setproductOptionStock", productOptionDTO);
+	}
+	public ProductOptionDTO setProductOption(Long optionNum) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"setProductOption", optionNum);
+	}
+	
 }

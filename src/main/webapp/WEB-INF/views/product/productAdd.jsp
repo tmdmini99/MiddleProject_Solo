@@ -30,8 +30,6 @@
 	</div>
 	<button type="button" id="btn">카테고리 추가</button>
 	</div>
-	discount : <input type="text" name="discount">
-	discountPercent :<input type="text" name="discountPercent">
 	ProductSales ok : <input type="radio" checked name="productSales" value="1">
 	ProductSales no : <input type="radio" name="productSales" value="0">
 		

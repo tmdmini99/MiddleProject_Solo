@@ -136,4 +136,6 @@
   	<select id="setProdutOptionRef" parameterType="Long" resultType="Long">
   		SELECT OPTIONNUM FROM PRODUCTOPTION WHERE REF=#{optionNum}
   	</select>
+  	
+  	
   </mapper>

@@ -119,17 +119,18 @@ $(document).on('click',".cartBuyBtns",function(){
             cartIndex.push($(this).attr("data-num"));
         }
     })
-    location.href="./cartBuy?optionNums="+cartBuyIndex+"&nums="+cartIndex
+    location.href="./cartOrder?optionNums="+cartBuyIndex+"&nums="+cartIndex
     // $.ajax({
-    //     type:"GET",
-    //     url : "./cartBuy",
+    //     type:"POST",
+    //     url : "./cartOrder",
     //     traditional:true,
     //     data :{
     //         optionNums : cartBuyIndex,
     //         nums : cartIndex
     //     },
     //     success : function(data){
-    //         $(".cartLists").html(data);
+    //         alret("주문이 완료되었습니다");
+    //         location.href="../product/productList"
     //     }
     // })
 })

@@ -126,6 +126,7 @@
                             
                            
                             <a href="./productOptionAdd?productNum=${dto.productNum}" class="btn btn-outline-dark flex-shrink-0">옵션 추가</a>
+                            <a href="./productOptionUpdate?productNum=${dto.productNum}" class="btn btn-outline-dark flex-shrink-0">옵션 수정</a>
                             <a href="./productUpdate?productNum=${dto.productNum}" class="btn btn-outline-danger flex-shrink-0">상품 수정</a>
                             <button  type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-danger">옵션 삭제</button>
                         

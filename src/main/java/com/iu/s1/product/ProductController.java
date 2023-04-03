@@ -164,6 +164,48 @@ public class ProductController {
 		mv.setViewName("/common/ajaxResult");
 		return mv;
 	}
-	
+	@GetMapping("productOptionUpdate")
+	public ModelAndView setProductOptionUpdate(ProductOptionDTO productOptionDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		productOptionDTO.setRef(0L);
+		productOptionDTO.setDepth(0L);
+		List<ProductOptionDTO> ar = productService.getProductOptionList(productOptionDTO);
+		List<ProductOptionDTO> arr = new ArrayList<ProductOptionDTO>();
+		List<ProductOptionDTO> arrr = new ArrayList<ProductOptionDTO>();
+		for(int i=0; i<ar.size(); i++) {
+			productOptionDTO.setRef(ar.get(i).getOptionNum());
+			productOptionDTO.setDepth(1L);
+			arr = productService.getProductOptionList(productOptionDTO);
+			for(int j=0; j<arr.size(); j++) {
+				productOptionDTO.setRef(arr.get(i).getOptionNum());
+				productOptionDTO.setDepth(2L);
+				arrr=productService.getProductOptionList(productOptionDTO);
+			}
+			
+		}
+		
+		
+		mv.addObject("dto", ar);
+		mv.addObject("dto2", arr);
+		mv.addObject("dto3", arrr);
+		mv.setViewName("./product/productUpdate");
+		return mv;
+	}
+	@PostMapping("productOptionUpdate")
+	public ModelAndView setProductOptionUpdate(ProductOptionDTO productOptionDTO,HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		String json1 = request.getParameter("json1");
+		System.out.println(json1);
+		Gson gson = new Gson();
+		ProductOptionDTO [] productOptionDTOs =gson.fromJson(json1, ProductOptionDTO[].class);
+		System.out.println(productOptionDTO.getProductNum());
+		int result = 0;
+		if(productOptionDTOs != null) {
+			result=productService.setProductOptionDeletes(productOptionDTO.getProductNum());
+			result=productService.setProductOptionAdd(productOptionDTOs,productOptionDTO);
+		}
+		return mv;
+	}
 	
 }
