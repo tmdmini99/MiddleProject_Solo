@@ -50,10 +50,11 @@
 					<label for="memberAddress" class="form-label mt-4">주소</label>
 				 <input type="text" class="form-control" id="memberAddress" aria-describedby="emailHelp" name="address">
 			 	</div> 
-				 <!-- <div class="form-group">
+				 <div class="form-group d-none" id="detailAdd">
 					<label for="memberAddress" class="form-label mt-4">상세 주소</label>
-				 <input type="text" class="form-control" id="address_detail" aria-describedby="emailHelp" name="address1">
-			 	</div>  -->
+					<input type="text" class="form-control" id="memberAddress1" aria-describedby="emailHelp" name="address1">
+						
+			 	</div> 
 				 <div class="form-group">
 					<label for="memberAddress" class="form-label mt-4">휴대폰 번호</label>
 				 <input type="text" class="form-control" id="memberPhone" aria-describedby="emailHelp" name="phone">
@@ -71,13 +72,13 @@
                 </div>	
                 <div class="input-group mt-3">
 					        <input class="form-control mail-check-input" placeholder="인증번호 6자리를 입력해주세요!" disabled="disabled" maxlength="6">
-					        <button type="button" class="btn btn-primary" id="mail-Check-Btn">인증번호 발송</button>
-					        <button type="button" class="btn btn-secondary d-none" id="mail-Confirm-Btn">인증번호 확인</button>
+					        <button type="button" class="submit-btn-1 btn-hover-1" id="mail-Check-Btn">인증번호 발송</button>
+					        <button type="button" class="submit-btn-1 btn-hover-1 d-none" id="mail-Confirm-Btn">인증번호 확인</button>
 					    </div>
 		    <span id="mail-check-warn"></span>
 				
-				<div class="d-grid gap-2">
-                    <button class="btn btn-primary btn-lg" type="button" id="btn1">가입하기</button>
+							<div class="d-grid gap-2">
+                    <button class="submit-btn-1 btn-hover-1" type="button" id="btn1">가입하기</button>
                 </div>
 
             </form>
@@ -92,6 +93,8 @@
 					oncomplete: function(data) { //선택시 입력값 세팅
 						document.getElementById("memberAddress").value = data.address; // 주소 넣기
 						//document.querySelector("input[name=address_detail]").focus(); //상세입력 포커싱
+						document.getElementById("detailAdd").classList.remove("d-none");
+						
 					}
 				}).open();
 			});

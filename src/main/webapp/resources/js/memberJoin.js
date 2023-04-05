@@ -140,8 +140,8 @@ $("#memberName").blur(function(){
         checks[3]=false;
     }
 })
-$("#memberAddress").blur(function(){
-    if($("#memberAddress").val().length>0){
+$("#memberAddress1").blur(function(){
+    if($("#memberAddress1").val().length>0){
         checks[4]=true;
     }
     else{
@@ -175,4 +175,6 @@ $("#btn1").click(function(){
         alert("모든 사항을 입력하세요");
     }
 })
+
+
 

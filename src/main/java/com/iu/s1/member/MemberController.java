@@ -93,8 +93,9 @@ public class MemberController {
 	}
 	
 	@PostMapping("memberJoin")
-	public ModelAndView setMemberAdd(MemberDTO memberDTO,String emaildomain) throws Exception{
+	public ModelAndView setMemberAdd(MemberDTO memberDTO,String emaildomain,String address1) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		memberDTO.setAddress(memberDTO.getAddress()+address1);
 		memberDTO.setEmail(memberDTO.getEmail()+emaildomain);
 		int result = memberService.setMemberJoin(memberDTO);
 		
