@@ -213,4 +213,5 @@ public class ProductService {
 	public int setProductOptionDeletes(Long productNum) throws Exception{
 		return productDAO.setProductOptionDeletes(productNum);
 	}
+	
 }

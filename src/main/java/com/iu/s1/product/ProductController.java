@@ -37,7 +37,7 @@ public class ProductController {
 		ModelAndView mv = new ModelAndView();
 		List<ProductDTO> ar = productService.getProductList(pager);
 		mv.addObject("dto", ar);
-		mv.setViewName("./product/productList");
+		mv.setViewName("product/productList");
 		
 		return mv;
 	}
@@ -57,14 +57,14 @@ public class ProductController {
 		mv.addObject("dto", productDTO);
 		mv.addObject("dto2", a);
 		mv.addObject("dto3", ar);
-		mv.setViewName("./product/productDetail");
+		mv.setViewName("product/productDetail");
 		return mv;
 	}
 	
 	@GetMapping("productAdd")
 	public ModelAndView setProductAdd()throws Exception{
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("./product/productAdd");
+		mv.setViewName("product/productAdd");
 		return mv;
 	}
 	
@@ -80,7 +80,7 @@ public class ProductController {
 	public ModelAndView setProductOptionAdd(ProductDTO productDTO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("dto", productDTO);
-		mv.setViewName("./product/productOptionAdd");
+		mv.setViewName("product/productOptionAdd");
 		return mv;
 	}
 	
@@ -129,7 +129,7 @@ public class ProductController {
 		productDTO=productService.getProductDetail(productDTO);
 	
 		mv.addObject("dto", productDTO);
-		mv.setViewName("./product/productUpdate");
+		mv.setViewName("product/productUpdate");
 		return mv;
 	}
 	//beforeCategoryNums는 예전 categoryNum
@@ -161,7 +161,7 @@ public class ProductController {
 		int a = productService.setProductFileDelete(fileNum);
 		
 		mv.addObject("dto", a);
-		mv.setViewName("/common/ajaxResult");
+		mv.setViewName("common/ajaxResult");
 		return mv;
 	}
 	@GetMapping("productOptionUpdate")
@@ -170,26 +170,30 @@ public class ProductController {
 		
 		productOptionDTO.setRef(0L);
 		productOptionDTO.setDepth(0L);
+		//상위
 		List<ProductOptionDTO> ar = productService.getProductOptionList(productOptionDTO);
-		List<ProductOptionDTO> arr = new ArrayList<ProductOptionDTO>();
-		List<ProductOptionDTO> arrr = new ArrayList<ProductOptionDTO>();
+		
+		//상위
 		for(int i=0; i<ar.size(); i++) {
 			productOptionDTO.setRef(ar.get(i).getOptionNum());
 			productOptionDTO.setDepth(1L);
-			arr = productService.getProductOptionList(productOptionDTO);
-			for(int j=0; j<arr.size(); j++) {
-				productOptionDTO.setRef(arr.get(i).getOptionNum());
+			
+			ar.get(i).setOptions(productService.getProductOptionList(productOptionDTO));
+			
+			for(int j=0; j<ar.get(i).getOptions().size(); j++) {
+				productOptionDTO.setRef(ar.get(i).getOptions().get(j).getOptionNum());
 				productOptionDTO.setDepth(2L);
-				arrr=productService.getProductOptionList(productOptionDTO);
+				
+				ar.get(i).getOptions().get(j).setOptions(productService.getProductOptionList(productOptionDTO));
+				
 			}
 			
 		}
 		
 		
-		mv.addObject("dto", ar);
-		mv.addObject("dto2", arr);
-		mv.addObject("dto3", arrr);
-		mv.setViewName("./product/productUpdate");
+		mv.addObject("dto",ar);
+		
+		mv.setViewName("product/productOptionUpdate");
 		return mv;
 	}
 	@PostMapping("productOptionUpdate")
@@ -205,7 +209,10 @@ public class ProductController {
 			result=productService.setProductOptionDeletes(productOptionDTO.getProductNum());
 			result=productService.setProductOptionAdd(productOptionDTOs,productOptionDTO);
 		}
+		mv.setViewName("redirect:./productDetail?productNum="+productOptionDTO.getProductNum());
 		return mv;
 	}
+	
+	
 	
 }

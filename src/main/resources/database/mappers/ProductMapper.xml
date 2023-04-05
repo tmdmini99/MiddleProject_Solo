@@ -50,8 +50,6 @@
   		
   		<result column="ID" property="id"/>
   		<result column="PRODUCTNAME" property="productName"/>
-  		<result column="DISCOUNT" property="discount"/>
-  		<result column="DISCOUNTPERCENT" property="discountPercent"/>
   		<result column="PRODUCTSALES" property="productSales"/>
   		
   		<collection property="productOptionDTOs" javaType="List" ofType="ProductOptionDTO">
@@ -87,7 +85,7 @@
   		<selectKey order="BEFORE" resultType="Long" keyProperty="productNum">
   	SELECT PRODUCT_SEQ.NEXTVAL FROM DUAL
   	</selectKey>
-  		INSERT INTO PRODUCT VALUES(#{productNum},#{productName},#{discount},#{discountPercent},#{productSales},#{id})
+  		INSERT INTO PRODUCT VALUES(#{productNum},#{productName},#{productSales},#{id})
   	</insert>
   	<insert id="setProductCategoryAdd" parameterType="CategoryDTO">
   	INSERT INTO PRODUCTCATEGORY VALUES(#{productNum},#{categoryNum})
@@ -115,10 +113,10 @@
   	<delete id="setProductFileDelete" parameterType="Long">
   		DELETE PRODUCTFILES WHERE FILENUM=#{fileNum}
   	</delete>
-  	<update id="setProductUpdate">
-  		UPDATE PRODUCT SET PRODUCTNAME=#{productName},DISCOUNT=#{discount}, DISCOUNTPERCENT=#{discountPercent},PRODUCTSALES=#{productSales} WHERE PRODUCTNUM=#{productNum}
+  	<update id="setProductUpdate" parameterType="ProductDTO">
+  		UPDATE PRODUCT SET PRODUCTNAME=#{productName},PRODUCTSALES=#{productSales} WHERE PRODUCTNUM=#{productNum}
   	</update>
-  	<delete id="setProductDelete">
+  	<delete id="setProductDelete" parameterType="Long">
   		DELETE PRODUCT WHERE PRODUCTNUM=#{productNum}
   	</delete>
   	<delete id="setProductOptionDelete" parameterType="Long">
@@ -135,6 +133,9 @@
   	</delete>
   	<select id="setProdutOptionRef" parameterType="Long" resultType="Long">
   		SELECT OPTIONNUM FROM PRODUCTOPTION WHERE REF=#{optionNum}
+  	</select>
+  	<select id="getProductOptionLists" parameterType="ProductOptionDTO" resultType="ProductOptionDTO">
+  		SELECT * FROM PRODUCTOPTION WHERE PRODUCTNUM=#{productNum} AND OPTIONNUM=#{optionNum} AND DEPTH=#{depth}
   	</select>
   	
   	

@@ -1,5 +1,7 @@
 package com.iu.s1.product;
 
+import java.util.List;
+
 public class ProductOptionDTO {
 	private Long optionNum;
 	private Long productNum;
@@ -11,18 +13,16 @@ public class ProductOptionDTO {
 	private Long depth;
 	private Long step;
 	private ProductOptionDTO [] sub;
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	//test 추가
+	private List<ProductOptionDTO> options;
+		
+	public List<ProductOptionDTO> getOptions() {
+		return options;
+	}
+	public void setOptions(List<ProductOptionDTO> options) {
+		this.options = options;
+	}
+	//test 끝
 	
 	
 	public ProductOptionDTO[] getSub() {

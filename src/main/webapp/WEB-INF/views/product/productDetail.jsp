@@ -100,7 +100,7 @@
                         	</c:choose>
                         
                         </div>
-                        <div><p class="lead">ㅋ ${dto2}</div>
+                        <div><p class="lead">ㅋ 10*10</div>
                             <div class="nasss"></div>
                       	<button type="button" class="btn btn-primary"  id="optionBtn" data-productNum="${dto.productNum}" data-optionNum="${dto.productOptionDTOs[0].optionNum}">
  													 	옵션 선택 

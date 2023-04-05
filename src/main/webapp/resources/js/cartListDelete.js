@@ -134,3 +134,41 @@ $(document).on('click',".cartBuyBtns",function(){
     //     }
     // })
 })
+
+$(".inc").click(function(){
+    let a = $(this) 
+    $.ajax({
+        type:"POST",
+        url : "./cartM",
+        traditional:true,
+        data :{
+            num : $(this).attr("data-num"),
+            count : ($(this).prev().val()*1+1)
+        },
+        success : function(data){
+            a.prev().val((a.prev().val()*1+1))
+            a.parent().parent().next().text(((a.prev().val()))*(a.attr("data-price")))
+        }
+    })
+    console.log( ($(this).prev().val()*1+1));
+    
+})
+
+
+$(".dec").click(function(){
+    let a = $(this)
+    $.ajax({
+        type:"POST",
+        url : "./cartP",
+        traditional:true,
+        data :{
+            num : $(this).attr("data-num"),
+            count : $(this).next().val()-1
+        },
+        success : function(data){
+            a.next().val(a.next().val()-1)
+            a.parent().parent().next().text((a.next().val())*(a.attr("data-price")))
+        }
+    })
+    
+})

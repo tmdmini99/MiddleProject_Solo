@@ -138,6 +138,25 @@ public class CartController {
 		mv.setViewName("common/sessionList");
 		return mv;
 	}
+	@PostMapping("cartM")
+	public ModelAndView setCartM(CartDTO cartDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		int a =cartService.setCartUpdate(cartDTO);
+		
+		mv.setViewName("common/sessionList");
+		return mv;
+	}
+	@PostMapping("cartP")
+	public ModelAndView setCartP(CartDTO cartDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		
+		
+		int a =cartService.setCartUpdate(cartDTO);
+		mv.setViewName("common/sessionList");
+		return mv;
+	}
 	
 	
 	
