@@ -61,4 +61,11 @@ public class MemberService {
 		return s;
 	}
 	
+	public int setMemberAuto(MemberDTO memberDTO)throws Exception{
+		return memberDAO.setMemberAuto(memberDTO);
+	}
+	public List<MemberDTO> getMemberAuto() throws Exception{
+		return memberDAO.getMemberAuto();
+	}
+	
 }

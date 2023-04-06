@@ -88,7 +88,7 @@ public class MemberController {
 	public ModelAndView setMemberAdd() throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
-		mv.setViewName("./member/memberJoin");
+		mv.setViewName("member/memberJoin");
 		return mv;
 	}
 	
@@ -112,13 +112,13 @@ public class MemberController {
 		memberDTO=memberService.getMemberDetail(memberDTO);
 		
 		mv.addObject("dto", memberDTO);
-		mv.setViewName("./member/memberDetail");
+		mv.setViewName("member/memberDetail");
 		return mv;
 	}
 	@GetMapping("memberLogin")
 	public ModelAndView getMemberLogin() throws Exception{
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("./member/memberLogin");
+		mv.setViewName("member/memberLogin");
 		return mv;
 	}
 	@PostMapping("memberLogin")
@@ -155,7 +155,7 @@ public class MemberController {
 		memberDTO=memberService.getMemberDetail(memberDTO);
 		
 		mv.addObject("dto", memberDTO);
-		mv.setViewName("./member/memberUpdate");
+		mv.setViewName("member/memberUpdate");
 		return mv;
 	}
 	@PostMapping("memberUpdate")
@@ -207,6 +207,25 @@ public class MemberController {
 			mv.addObject("url", "./memberPwcheck");
 		}
 		mv.setViewName("common/result");
+		return mv;
+	}
+	@GetMapping("memberAuto")
+	public ModelAndView setMemberAuto(HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		MemberDTO auto =(MemberDTO)session.getAttribute("member");
+		auto.setAutoStatus(1L);
+		int a = memberService.setMemberAuto(auto);
+		
+		mv.setViewName("redirect:./memberDetail");
+		return mv;
+	}
+	@GetMapping("memberStatus")
+	public ModelAndView getMemberStatus() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		List<MemberDTO> ar = memberService.getMemberAuto();
+		mv.addObject("list", ar);
+		mv.setViewName("member/memberList");
 		return mv;
 	}
 }

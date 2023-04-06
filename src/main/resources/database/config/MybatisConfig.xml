@@ -15,10 +15,14 @@
  		
  		<typeAlias type="com.iu.s1.product.ProductOptionDTO" alias="ProductOptionDTO"/>
  		<typeAlias type="com.iu.s1.product.ProductFileDTO" alias="ProductFileDTO"/>
- 		<typeAlias type="com.iu.s1.product.ProductFileDTO" alias="ProductFileDTO"/>
  		<typeAlias type="com.iu.s1.util.Pager" alias="Pager"/>	
  		<typeAlias type="com.iu.s1.cart.CartDTO" alias="CartDTO"/>
  		<typeAlias type="com.iu.s1.cart.ProductOrderDTO" alias="ProductOrderDTO"/>
+ 		
+ 		<typeAlias type="com.iu.s1.board.notice.NoticeDTO" alias="NoticeDTO"/>
+ 		<typeAlias type="com.iu.s1.board.BbsDTO" alias="BbsDTO"/>		
+ 		<typeAlias type="com.iu.s1.board.qna.QnaDTO" alias="QnaDTO"/>	
+ 		
   </typeAliases>
   
   

@@ -31,11 +31,11 @@
 		<tr>
 		<td><input type="checkbox" class="checkd"  value="${dto.num}" data-optionNum="${dto.optionNum}" data-num="${dto.num}"></td>
 		
-		<td>${dto.optionNum}</td>
-		<td>${dto.optionName}</td>
-		<td>${dto.productNum}</td>
-		<td>${dto.price*dto.count}</td>
-		<td>${dto.count}</td>
+		<td>${dto.optionNum}</td> <!-- dto의 옵션 번호를 출력하는 셀 -->
+		<td>${dto.optionName}</td> <!-- dto의 옵션 이름을 출력하는 셀 -->
+		<td>${dto.productNum}</td> <!-- dto의 제품 번호를 출력하는 셀 -->
+		<td>${dto.price*dto.count}</td> <!-- dto의 가격과 수량을 곱한 값을 출력하는 셀 -->
+		<td>${dto.count}</td> <!-- dto의 수량을 출력하는 셀 -->
 		
 		<td><button type="button" data-num="${dto.num}" class="btn btn-outline-danger cartDeleteBtn zmdi zmdi-close">장바구니 삭제</button></td>
 		<!-- update도 cartListDelete.js에 넣음 -->

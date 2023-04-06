@@ -9,9 +9,20 @@ public class MemberDTO {
 	private String phone;
 	private String email;
 	private RoleDTO roleDTO;
+	private Long autoStatus;
 	
 	
 	
+	
+	
+	
+	
+	public Long getAutoStatus() {
+		return autoStatus;
+	}
+	public void setAutoStatus(Long autoStatus) {
+		this.autoStatus = autoStatus;
+	}
 	public RoleDTO getRoleDTO() {
 		return roleDTO;
 	}

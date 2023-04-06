@@ -70,7 +70,7 @@
 </div>
 </div>
 
-</div>
+
     <!-- paging -->
 		<div class="row">
 				<nav aria-label="Page navigation example">
@@ -130,11 +130,9 @@
 					<span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
 				</button>
 			</form>
-		</div>
-	</div>
-</nav>
+		
 
-
+</section>
 <!-- Section-->
 <section class="py-5">
 	<div class="container px-4 px-lg-5 mt-5">

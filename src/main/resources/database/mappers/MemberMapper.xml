@@ -6,7 +6,7 @@
   <mapper namespace="com.iu.s1.member.MemberDAO">
   	
   	<insert id="setMemberJoin" parameterType="MemberDTO">
-  		INSERT INTO MEMBER VALUES(#{id},3,#{pw},#{name},#{address},#{phone},#{email})
+  		INSERT INTO MEMBER VALUES(#{id},3,#{pw},#{name},#{address},#{phone},#{email},0)
   	</insert>
   	<select id="getMemberLogin" parameterType="MemberDTO" resultMap="MemberLogin">
   	SELECT * FROM  MEMBER M
@@ -38,5 +38,15 @@
   	<update id="setMemberPwChange" parameterType="MemberDTO">
   	UPDATE MEMBER SET PW=#{pw} WHERE ID=#{id}
   	</update>
+  	<update id="setMemberAuto" parameterType="MemberDTO">
+  	UPDATE MEMBER SET AUTOSTATUS=#{autoStatus} WHERE ID=#{id}
+  	</update>
+  	<update id="setMemberRole" parameterType="MemberDTO">
+  	UPDATE MEMBER SET ROLENUM=2 WHERE ID=#{id}
+  	</update>
+  	<select id="getMemberAuto" resultType="MemberDTO">
+  	SELECT * FROM MEMBER WHERE AUTOSTATUS =1
+  	</select>
+  	
   	
   </mapper>

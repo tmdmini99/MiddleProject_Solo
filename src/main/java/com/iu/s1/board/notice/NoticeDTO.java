@@ -1,5 +1,7 @@
 package com.iu.s1.board.notice;
 
-public class NoticeDTO {
+import com.iu.s1.board.BbsDTO;
+
+public class NoticeDTO  extends BbsDTO{
 
 }

@@ -30,5 +30,11 @@ public class MemberDAO {
 	public int setMemberPwChange(MemberDTO memberDTO)throws Exception{
 		return sqlSession.update(NAMESPACE+"setMemberPwChange", memberDTO);
 	}
+	public int setMemberAuto(MemberDTO memberDTO)throws Exception{
+		return sqlSession.update(NAMESPACE+"setMemberAuto", memberDTO);
+	}
+	public List<MemberDTO> getMemberAuto() throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getMemberAuto");
+	}
 	
 }

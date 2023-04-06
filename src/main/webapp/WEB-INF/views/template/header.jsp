@@ -22,15 +22,15 @@
                         <a class="nav-link active" aria-current="page" href="/product/productList">전자제품</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">QNA</a>
+                        <a class="nav-link" href="/qna/list">QNA</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/notice/list" id="navbarDropdown" role="button">
                             NOITCE
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="#" tabindex="-1">ART OF LIVING</a>
+                        <a class="nav-link " href="/member/memberStatus" >Status</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="#" tabindex="-1">MAGAGINE</a>

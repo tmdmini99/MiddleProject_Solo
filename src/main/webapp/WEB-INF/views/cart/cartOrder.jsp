@@ -28,7 +28,7 @@ cartOrder Page
 				<c:forEach items="${list}" var="dto" varStatus="status">
 		
 		<tr>
-			<input type="hidden" class="optionNum" value="${dto.num}">
+			<td><input type="hidden" class="optionNum" value="${dto.num}"></td>
 		<td>${dto.optionNum}</td>
 		<!-- <td>${dto.optionName}</td> -->
 		<td>${dto.productNum}</td>
