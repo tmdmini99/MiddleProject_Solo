@@ -14,6 +14,7 @@
 	<table class="table table-hover">
 			<thead>
 				<tr>
+					<th><input type="checkbox" id="checkAll"></th>
 					<th>NUM</th>
 					<th>TITLE</th>
 					<th>ID</th>
@@ -24,16 +25,18 @@
 				<c:forEach items="${list}" var="dto" varStatus="status">
 		
 		<tr>
-		<td><input type="checkbox"></td>
+		<td><input type="checkbox" class="checkd" value="${dto.id}"></td>
 	
 		<td><a href="#">${dto.id}</a></td>
-		<td>${dto.id}</td>
+		<td>${dto.autoStatus}</td>
 		
 		</tr>
 			</c:forEach>
 			
 			</tbody>
 		</table>
+		<button type="button" id="btn">권한 부여</button>
+		<script src="/resources/js/memberStatus.js"></script>
 		<c:import url="../template/common_js.jsp"></c:import>
 </body>
 </html>

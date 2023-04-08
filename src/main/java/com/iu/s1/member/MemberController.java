@@ -3,6 +3,7 @@ package com.iu.s1.member;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -122,8 +123,82 @@ public class MemberController {
 		return mv;
 	}
 	@PostMapping("memberLogin")
-	public ModelAndView getMemberLogin(MemberDTO memberDTO,HttpSession session,String remember,HttpServletResponse response) throws Exception{
+	public ModelAndView getMemberLogin(MemberDTO memberDTO,HttpSession session,String remember,HttpServletResponse response,HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		
+		String message="로그인 실패";
+		
+		// kakaoid를 to의 id로 세팅
+		if(request.getParameter("kakaoemail") !="") {
+			// ==================== 카카오 로그인 ========================
+			System.out.println("카카오로그인");
+			System.out.println(request.getParameter("kakaoemail"));
+			/* System.out.println(request.getParameter("kakaoname")); */
+			//System.out.println(request.getParameter("kakaobirth"));
+
+			// kakaoemail을 kakaoid에 저장
+			String kakaoid = request.getParameter("kakaoemail");
+
+		memberDTO.setId(kakaoid);
+		// 카카오계정으로 로그인한 적이 있는지 없는지 
+		boolean result_lookup = memberService.getMemberCheck(memberDTO);
+		System.out.println("boolean :"+result_lookup);
+		
+		if (result_lookup) { // 회원이 아닌경우 (카카오 계정으로 처음 방문한 경우) 카카오 회원정보 설정 창으로 이동
+//		    System.out.println("카카오 회원 정보 설정");
+//
+//		    request.setAttribute("kakaoid",request.getParameter("kakaoemail"));
+//		    request.setAttribute("kakaoname",request.getParameter("kakaoname"));
+//			/* request.setAttribute("kakaobirth",request.getParameter("kakaobirth")); */
+//		    request.setAttribute("kakaoemail",request.getParameter("kakaoemail"));
+//
+//		    // 회원가입창으로 이동
+//		    mv.setViewName("member/memberAgree");
+//		    return mv;
+			
+			int a = memberService.setKakaoLogin(memberDTO);
+			memberDTO=memberService.getMemberDetail(memberDTO);
+			
+			session.setAttribute("member", memberDTO);
+			
+			if(memberDTO !=null) {
+				message="로그인 성공";
+				mv.addObject("url", "/");
+			}else {
+				System.out.println("실패해서 일로옴");
+				mv.addObject("url", "./memberLogin");
+			}
+
+		} else { /*
+//					 * // 이미 카카오로 로그인한 적이 있을 때 (최초 1회 로그인때 회원가입된 상태) // id, nick, profile을 가져와서
+//					 * userTo = userDao.loginOkNick(userTo); // id를 세션에 저장
+//					 * session.setAttribute("kakaoid", userTo.getId()); // nick을 세션에 저장
+//					 * session.setAttribute("nick", userTo.getNick()); // 프로필 사진 (profile)을 세션에 저장
+//					 * session.setAttribute("profile", userTo.getProfile());
+//					 * 
+//					 * request.setAttribute("flag", 0);
+//					 * 
+//					 * System.out.println("kakaoid : " + userTo.getId());
+//					 * System.out.println("nick : " + userTo.getNick());
+//					 * System.out.println("profile : " + userTo.getProfile());
+//					 */
+			System.out.println("카카오 회원 정보 설정 실패");
+			memberDTO=memberService.getMemberDetail(memberDTO);
+			
+			session.setAttribute("member", memberDTO);
+			
+			if(memberDTO !=null) {
+				message="로그인 성공";
+				mv.addObject("url", "/");
+			}else {
+				System.out.println("실패해서 일로옴");
+				mv.addObject("url", "./memberLogin");
+			}
+		}
+		}
+		
+		else {
+		System.out.println("카카오 회원 정보 설정 실패");
 		memberDTO=memberService.getMemberLogin(memberDTO);
 		if(remember != null && memberDTO !=null&& remember.equals("remember")) {
 		Cookie cookie = new Cookie("remember",memberDTO.getId() );
@@ -135,12 +210,14 @@ public class MemberController {
 			response.addCookie(cookie);
 		}
 		session.setAttribute("member", memberDTO);
-		String message="로그인 실패";
+		
 		if(memberDTO !=null) {
 			message="로그인 성공";
 			mv.addObject("url", "/");
 		}else {
+			System.out.println("실패해서 일로옴");
 			mv.addObject("url", "./memberLogin");
+		}
 		}
 		mv.addObject("message", message);
 		
@@ -226,6 +303,16 @@ public class MemberController {
 		List<MemberDTO> ar = memberService.getMemberAuto();
 		mv.addObject("list", ar);
 		mv.setViewName("member/memberList");
+		return mv;
+	}
+	
+	@PostMapping("memberRole")
+	public ModelAndView setMemberRole(String [] ids) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		int a = memberService.setMemberRole(ids);
+		mv.addObject("dto", a);
+		mv.setViewName("common/sessionList");
 		return mv;
 	}
 }

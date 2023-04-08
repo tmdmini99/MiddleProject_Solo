@@ -10,7 +10,7 @@
   	</insert>
   	<select id="getMemberLogin" parameterType="MemberDTO" resultMap="MemberLogin">
   	SELECT * FROM  MEMBER M
-  								INNER JOIN
+  								LEFT JOIN
   								MEMBERROLE R
   								ON(M.ROLENUM=R.ROLENUM)
   	WHERE M.ID=#{id}
@@ -42,11 +42,13 @@
   	UPDATE MEMBER SET AUTOSTATUS=#{autoStatus} WHERE ID=#{id}
   	</update>
   	<update id="setMemberRole" parameterType="MemberDTO">
-  	UPDATE MEMBER SET ROLENUM=2 WHERE ID=#{id}
+  	UPDATE MEMBER SET ROLENUM=2, AUTOSTATUS=2 WHERE ID=#{id}
   	</update>
   	<select id="getMemberAuto" resultType="MemberDTO">
   	SELECT * FROM MEMBER WHERE AUTOSTATUS =1
   	</select>
-  	
+  	<insert id="setKakaoLogin" parameterType="MemberDTO">
+  	INSERT INTO MEMBER(ID,ROLENUM) VALUES(#{id},3)
+  	</insert>
   	
   </mapper>

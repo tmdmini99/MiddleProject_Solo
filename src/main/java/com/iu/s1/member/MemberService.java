@@ -24,11 +24,11 @@ public class MemberService {
 		
 		
 		if(loginDTO!=null &&loginDTO.getPw().equals(memberDTO.getPw())) {
-//			memberDTO.setRoleDTO(loginDTO.getRoleDTO());
-//			memberDTO.setPw(null);
-//			return memberDTO;
-			loginDTO.setPw(null);
-			return loginDTO;
+			memberDTO.setRoleDTO(loginDTO.getRoleDTO());
+			memberDTO.setPw(null);
+			return memberDTO;
+//			loginDTO.setPw(null);
+//			return loginDTO;
 		}
 		return null;
 	}
@@ -66,6 +66,18 @@ public class MemberService {
 	}
 	public List<MemberDTO> getMemberAuto() throws Exception{
 		return memberDAO.getMemberAuto();
+	}
+	public int setMemberRole(String [] ids) throws Exception{
+		int result = 0;
+		for(String id : ids) {
+			MemberDTO memberDTO=new MemberDTO();
+			memberDTO.setId(id);
+			result = memberDAO.setMemberRole(memberDTO);
+		}
+		return result;
+	}
+	public int setKakaoLogin(MemberDTO memberDTO) throws Exception{
+		return memberDAO.setKakaoLogin(memberDTO);
 	}
 	
 }

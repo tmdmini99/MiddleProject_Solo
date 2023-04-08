@@ -36,5 +36,11 @@ public class MemberDAO {
 	public List<MemberDTO> getMemberAuto() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getMemberAuto");
 	}
+	public int setMemberRole(MemberDTO memberDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"setMemberRole", memberDTO);
+	}
+	public int setKakaoLogin(MemberDTO memberDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setKakaoLogin", memberDTO);
+	}
 	
 }
