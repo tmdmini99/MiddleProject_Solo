@@ -1,4 +1,43 @@
 $(".finalPayment").click(function(){
+    
+    let ab=$(this);
+    
+   
+  BootPay.request({
+      price: ab.attr("data-total"),
+ 
+      
+      application_id : "64326d1b3049c8001a6f97c5",
+ 
+      name: 'LinkMall', 
+      pg: 'nicepay',
+      method: '',
+      show_agree_window: 0, 
+      items: [
+          {
+              item_name: '나는 아이템', 
+              qty: 1, 
+              unique: '2', 
+              price: 1, 
+          }
+      ],
+      order_id: '1', 
+  }).error(function (data) {
+      
+      console.log(data);
+  }).cancel(function (data) {
+      
+      console.log(data);
+  }).close(function (data) {
+      
+      console.log(data);
+  }).done(function (data) {
+    
+    
+    
+    
+    
+    
     let a=[];
     console.log($(this).attr("data-cart"))
     
@@ -21,4 +60,21 @@ $(".finalPayment").click(function(){
             }
         }
     })
+      console.log(data);
+  });
+
+    
+  //실제 복사하여 사용시에는 모든 주석을 지운 후 사용하세요
+  
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 })

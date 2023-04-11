@@ -36,42 +36,20 @@ cartOrder Page
 		<td>${dto.count}</td>
 		</tr>
 			</c:forEach>
-			<tr>
-				<td class="product-thumbnail">
-					<div class="pro-thumbnail-img">
-						<img src="img/cart/1.jpg" alt="">
-					</div>
-					<div class="pro-thumbnail-info text-start">
-						<h6 class="product-title-2">
-							<a href="#">dummy product name</a>
-						</h6>
-						<p>Brand: Brand Name</p>
-						<p>Model: Grand s2</p>
-						<p> Color: Black, White</p>
-					</div>
-				</td>
-				<td class="product-price">$560.00</td>
-				<td class="product-quantity">
-					<div class="cart-plus-minus f-left"><div class="dec qtybutton">-</div>
-						<input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
-					<div class="inc qtybutton">+</div></div> 
-				</td>
-				<td class="product-subtotal">$1020.00</td>
-				<td class="product-remove">
-					<a href="#"><i class="zmdi zmdi-close"></i></a>
-				</td>
-			</tr>
+			
 			</tbody>
 		</table>
 		최종 결제 금액 : ${total}
-		<button type="button" data-index="${status.index}" class="btn btn-outline-danger finalPayment" data-cart="${list}">최종 결제</button>
+		<button type="button" data-index="${status.index}" class="btn btn-outline-danger finalPayment" data-total="${total}" data-option="${dto.optionNum}" data-product="${dto.productNum}" data-price="${dto.price}" data-count="${dto.count}">최종 결제</button>
 		
 	</div>
 
 
 
+
+<script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.1.min.js" type="application/javascript"></script>
 <script src="/resources/js/finalPayment.js"></script>
 <c:import url="../template/common_js.jsp"></c:import>
-script
+
 </body>
 </html>

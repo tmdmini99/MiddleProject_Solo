@@ -16,6 +16,13 @@
 	</properties>
 	<dependencies>
 	
+	<dependency>
+    <groupId>org.apache.httpcomponents</groupId>
+    <artifactId>httpclient</artifactId>
+    <version>LATEST</version>
+</dependency>
+
+
 
 			<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 	<dependency>

@@ -43,7 +43,7 @@
 							<li class="nav-item"><a class="nav-link" href="/member/memberAgree">JOIN</a></li>
 						</c:when>
 						<c:otherwise>
-							<li class="nav-item"><a class="nav-link" href="/member/memberLogout">LOGOUT</a></li>
+							<li class="nav-item"> <a class="nav-link" href="/member/memberLogout">LOGOUT</a></li>
 							<li class="nav-item"><a class="nav-link" href="/member/memberDetail?id=${member.id}">MY PAGE</a></li>
 						</c:otherwise>
 					</c:choose>
@@ -57,5 +57,52 @@
         </div>
         
     </nav>
+    
+      <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script>
+        Kakao.init("fca33eab220165003ab246680f438cb4");
+
+        
+
+
+
+function kakaoLogout() {
+    if (Kakao.Auth.getAccessToken()) {
+      console.log('카카오 인증 액세스 토큰이 존재합니다.', Kakao.Auth.getAccessToken())
+      Kakao.Auth.logout(() => {
+        console.log('로그아웃 되었습니다', Kakao.Auth.getAccessToken());
+        this.setState({
+          isLogin: false
+        })        
+      });
+    } 
+    
+    
+    
+    Kakao.Auth.logout()
+  .then(function(response) {
+    console.log(Kakao.Auth.getAccessToken()); // null
+    Kakao.API.request({
+  	  url: '/v1/user/unlink',
+  	})
+  	  .then(function(response) {
+  	    console.log(response);
+  	    location.href="/member/memberLogout";
+  	  })
+  	  .catch(function(error) {
+  	    console.log(error);
+  	  });
+    
+  })
+  .catch(function(error) {
+    console.log('Not logged in.');
+   
+  });
+  }   
+
+  
+  
+ 
+    </script>
 </body>
 </html>

@@ -132,6 +132,7 @@ function kakaoLogin(){
                     $('#kakaoemail').val(email);
                     /* $('#kakaoname').val(name); */
                     /* $('#kakaobirth').val(birth); */
+                    
                     document.login_frm.submit();
                 }
             });

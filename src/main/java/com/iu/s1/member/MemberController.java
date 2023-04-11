@@ -315,4 +315,10 @@ public class MemberController {
 		mv.setViewName("common/sessionList");
 		return mv;
 	}
+	@GetMapping("context")
+	public ModelAndView getMember()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("context");
+		return mv;
+	}
 }
