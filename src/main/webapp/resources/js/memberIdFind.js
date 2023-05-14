@@ -11,8 +11,8 @@ $("#btn").click(function(){
     }).then((response)=>response.text()).then((res)=>{
         console.log(res.trim()!=null)
         if(res.trim()!=""){
-            $("#findId").html(res.trim());
-            let button ='<a href="./memberLogin" class="btn btn-primary">로그인 페이지로 돌아가기</a>';
+            $("#findId").html('ID는   "'+res.trim()+'"  입니다');
+            let button ='<br><a href="./memberLogin" class="btn btn-primary">로그인 페이지로 돌아가기</a>';
             $("#findId").append(button);
         }else{
             alert("등록되지 않은 ID입니다")

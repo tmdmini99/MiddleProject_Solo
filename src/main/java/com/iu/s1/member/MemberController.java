@@ -62,7 +62,7 @@ public class MemberController {
 	@PostMapping("memberPwFind")
 	public ModelAndView getMemberPwFind(MemberDTO memberDTO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		System.out.println("Con pw :"+memberDTO.getPw());
+		
 		System.out.println("Con em :"+memberDTO.getEmail());
 		String pw=memberService.setMemberPwChange(memberDTO);
 		

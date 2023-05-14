@@ -1,6 +1,7 @@
 package com.iu.s1.member;
 
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,7 +55,12 @@ public class MemberService {
 		
 		String s="";
 		if(loginDTO!=null &&loginDTO.getEmail().equals(memberDTO.getEmail())) {
-			
+			// 난수의 범위 111111 ~ 999999 (6자리 난수)
+						Random r = new Random();
+						int checkNum = r.nextInt(888888) + 111111;
+						System.out.println("인증번호 : " + checkNum);
+						s = Integer.toString(checkNum);
+						memberDTO.setPw(s);
 			int result=memberDAO.setMemberPwChange(memberDTO);
 			System.out.println("re"+result);
 		}
